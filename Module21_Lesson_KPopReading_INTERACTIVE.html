@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Music Intermediate III: Lesson 21 K-Pop and the Reading Challenge</title>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS — MUSIC in-lesson palette: green + purple ===== */
+    .optima-widget { background: linear-gradient(135deg, #F1ECF9 0%, #E6F6EE 100%); border: 1px solid #D6C8EE; border-left: 5px solid #6B4E9E; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 15px; color: #5A3E8C; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 18px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D6C8EE; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 16px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D6C8EE; border-radius: 8px; padding: 9px 16px; font-size: 16px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F1ECF9; border-color: #6B4E9E; }
+    .widget-options button.selected { background: #6B4E9E; color: #FFFFFF; border-color: #6B4E9E; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #2E9E6B; padding: 10px 14px; font-size: 16px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 16px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #6B4E9E; color: #6B4E9E; border-radius: 6px; padding: 6px 12px; font-size: 15px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #F1ECF9; }
+
+    /* ===== Video embed (responsive 16:9) ===== */
+    .mi-video { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; margin: 12px 0 4px 0; border: 2px solid #6B4E9E; }
+    .mi-video iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+    .mi-video-credit { font-size: 15px; color: #888; font-style: italic; margin: 0 0 14px 2px; }
+
+    /* ===== Roots of Rock and Roll visual ===== */
+    .mi-roots { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px; margin: 16px 0; }
+    .mi-root { background: #FFFFFF; border: 1px solid #D6C8EE; border-top: 4px solid #2E9E6B; border-radius: 10px; padding: 12px 16px; text-align: center; min-width: 110px; }
+    .mi-root-name { font-size: 16px; color: #0E1C42; }
+    .mi-root-sub { font-size: 15px; color: #5A3E8C; margin-top: 2px; }
+    .mi-arrow { font-size: 24px; color: #6B4E9E; }
+    .mi-rocknroll { background: #6B4E9E; color: #FFFFFF; border-radius: 10px; padding: 14px 20px; text-align: center; min-width: 150px; }
+    .mi-rocknroll-name { font-size: 18px; }
+
+    /* ===== Fact card ===== */
+    .mi-fact { background: #F1ECF9; border: 1px solid #D6C8EE; border-left: 5px solid #6B4E9E; border-radius: 8px; padding: 16px 20px; margin: 14px 0; }
+    .mi-fact-line { font-size: 16px; color: #0E1C42; line-height: 1.8; }
+    .mi-fact-label { color: #5A3E8C; }
+
+    /* ===== Then vs Now technology visual ===== */
+    .mi-tech-row { display: flex; flex-wrap: wrap; gap: 14px; margin: 14px 0; }
+    .mi-tech-card { flex: 1 1 220px; min-width: 220px; border-radius: 10px; padding: 16px 18px; }
+    .mi-tech-icon { font-size: 28px; line-height: 1; margin-bottom: 8px; }
+    .mi-tech-title { font-size: 17px; color: #0E1C42; margin-bottom: 6px; }
+    .mi-tech-text { font-size: 16px; color: #1a2340; line-height: 1.55; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">MUSIC INTERMEDIATE III</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q3 &middot; Module 21</div>
+        <div style="font-size: 12px; color: #666;">K-Pop and Reading</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 21</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">K-Pop and the Reading Challenge</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">About how long</div>
+        <div style="font-size: 16px; color: #0e1c42;">about 50 min</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+<!-- ═══ OPTIMA READ-ALOUD PLAYER ═══ -->
+<div id="optima-read-aloud">
+<style>
+    #optima-read-aloud { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 14px 18px; margin: 0 0 20px 0; }
+    #optima-read-aloud .ora-kicker { font-size: 11px; color: #1B6A94; letter-spacing: 0.4px; margin-bottom: 10px; }
+    #optima-read-aloud .ora-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+    #optima-read-aloud .ora-controls button { border-radius: 8px; padding: 8px 16px; font-size: 14px; cursor: pointer; font-family: inherit; transition: all 0.15s; }
+    #ora-play { background: #0E1C42; color: #FFFFFF; border: 1.5px solid #0E1C42; }
+    #ora-play:hover:enabled { background: #1B2D5E; }
+    #ora-play:disabled { background: #D0D9E8; border-color: #D0D9E8; color: #6b7a99; cursor: default; }
+    #ora-stop { background: #FFFFFF; color: #0E1C42; border: 1.5px solid #D0D9E8; }
+    #ora-stop:hover:enabled { background: #F4F6FA; border-color: #55C8E8; }
+    #ora-stop:disabled { color: #999; border-color: #E4E9F2; cursor: default; }
+    #optima-read-aloud .ora-speed { font-size: 12px; color: #6b7a99; display: flex; align-items: center; gap: 6px; }
+    #ora-rate { font-family: inherit; font-size: 13px; color: #0E1C42; border: 1.5px solid #D0D9E8; border-radius: 6px; padding: 5px 8px; background: #FFFFFF; }
+    #ora-status { font-size: 12px; color: #666; }
+    .ora-highlight { background: #FDF3E3 !important; box-shadow: inset 4px 0 0 #C7922C; border-radius: 4px; transition: background 0.2s; }
+</style>
+    <div class="ora-kicker">&#128266; READ ALOUD &mdash; LISTEN TO THIS PAGE</div>
+    <div class="ora-controls">
+        <button id="ora-play" type="button" aria-label="Listen to this page">&#9654;&#65039; Listen</button>
+        <button id="ora-stop" type="button" aria-label="Stop reading" disabled>&#9632; Stop</button>
+        <label class="ora-speed">Speed
+            <select id="ora-rate" aria-label="Reading speed">
+                <option value="0.8">Slower</option>
+                <option value="1" selected>Normal</option>
+                <option value="1.25">Faster</option>
+            </select>
+        </label>
+        <span id="ora-status" role="status" aria-live="polite"></span>
+    </div>
+<script>
+(function () {
+    "use strict";
+    var playBtn  = document.getElementById("ora-play");
+    var stopBtn  = document.getElementById("ora-stop");
+    var rateSel  = document.getElementById("ora-rate");
+    var statusEl = document.getElementById("ora-status");
+
+    if (!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)) {
+        playBtn.disabled = true;
+        rateSel.disabled = true;
+        statusEl.textContent = "Read-aloud is not supported in this browser.";
+        return;
+    }
+
+    var LABEL_PLAY   = "▶️ Listen";
+    var LABEL_PAUSE  = "⏸️ Pause";
+    var LABEL_RESUME = "▶️ Resume";
+    var BLOCK_SEL = "p, li, h1, h2, h3, h4, h5, h6, blockquote, td, th, dt, dd, figcaption, div";
+    var SKIP_SEL  = "#optima-read-aloud, [data-ra-skip], button, script, style, select, noscript, iframe";
+
+    var queue = [];        // [{ el, text }] — one entry per sentence
+    var idx = 0;
+    var playing = false, paused = false, stopping = false;
+    var currentBlock = null;
+    var currentUtterance = null;  // held to dodge a Chrome garbage-collection bug
+
+    var voices = [];
+    function loadVoices() { voices = window.speechSynthesis.getVoices(); }
+    loadVoices();
+    if ("onvoiceschanged" in window.speechSynthesis) {
+        window.speechSynthesis.onvoiceschanged = loadVoices;
+    }
+    function pickVoice() {
+        if (!voices.length) loadVoices();
+        var en = voices.filter(function (v) { return /^en/i.test(v.lang); });
+        return en.filter(function (v) { return /natural/i.test(v.name); })[0]
+            || en.filter(function (v) { return /google us english/i.test(v.name); })[0]
+            || en.filter(function (v) { return v.default; })[0]
+            || en[0] || null;
+    }
+
+    function isVisible(el) {
+        return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length);
+    }
+
+    // Walk text nodes, attach each to its nearest block ancestor, split into sentences.
+    function collectQueue() {
+        var root = document.querySelector("[data-readaloud-root]")
+                || document.querySelector(".canvas-frame")
+                || document.body;
+        var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+        var items = [];   // [{ el, text }] — one entry per block, in reading order
+        var node;
+        while ((node = walker.nextNode())) {
+            if (!/\S/.test(node.textContent)) continue;
+            var el = node.parentElement;
+            if (!el || el.closest(SKIP_SEL)) continue;
+            if (!isVisible(el)) continue;
+            var block = el.closest(BLOCK_SEL) || root;
+            var last = items[items.length - 1];
+            if (last && last.el === block) last.text += " " + node.textContent;
+            else items.push({ el: block, text: node.textContent });
+        }
+        var q = [];
+        items.forEach(function (item) {
+            var clean = item.text.replace(/\s+/g, " ").trim();
+            if (!clean) return;
+            var sentences = clean.match(/[^.!?]+[.!?]+[”"')\]]*\s*|[^.!?]+$/g) || [clean];
+            sentences.forEach(function (s) {
+                s = s.trim();
+                if (s) q.push({ el: item.el, text: s });
+            });
+        });
+        return q;
+    }
+
+    function highlight(el) {
+        if (el === currentBlock) return;
+        clearHighlight();
+        currentBlock = el;
+        if (el && el !== document.body) {
+            el.classList.add("ora-highlight");
+            try { el.scrollIntoView({ behavior: "smooth", block: "nearest" }); } catch (e) {}
+        }
+    }
+    function clearHighlight() {
+        if (currentBlock) currentBlock.classList.remove("ora-highlight");
+        currentBlock = null;
+    }
+
+    function speakNext() {
+        if (idx >= queue.length) { finish("Finished reading this page."); return; }
+        var item = queue[idx];
+        highlight(item.el);
+        var u = new SpeechSynthesisUtterance(item.text);
+        u.rate = parseFloat(rateSel.value) || 1;
+        var v = pickVoice();
+        if (v) u.voice = v;
+        u.onend = function () {
+            if (stopping) return;
+            idx++;
+            speakNext();
+        };
+        u.onerror = function (e) {
+            if (stopping || e.error === "canceled" || e.error === "interrupted") return;
+            idx++;
+            speakNext();
+        };
+        currentUtterance = u;
+        window.speechSynthesis.speak(u);
+        statusEl.textContent = "Reading… " + (idx + 1) + " / " + queue.length;
+    }
+
+    function finish(message) {
+        playing = false;
+        paused = false;
+        clearHighlight();
+        playBtn.textContent = LABEL_PLAY;
+        stopBtn.disabled = true;
+        statusEl.textContent = message || "";
+        currentUtterance = null;
+    }
+
+    playBtn.addEventListener("click", function () {
+        if (playing && !paused) {
+            window.speechSynthesis.pause();
+            paused = true;
+            playBtn.textContent = LABEL_RESUME;
+            statusEl.textContent = "Paused";
+            return;
+        }
+        if (playing && paused) {
+            window.speechSynthesis.resume();
+            paused = false;
+            playBtn.textContent = LABEL_PAUSE;
+            statusEl.textContent = "Reading… " + (idx + 1) + " / " + queue.length;
+            return;
+        }
+        queue = collectQueue();
+        if (!queue.length) { statusEl.textContent = "Nothing to read on this page."; return; }
+        idx = 0;
+        stopping = false;
+        playing = true;
+        paused = false;
+        window.speechSynthesis.cancel();
+        playBtn.textContent = LABEL_PAUSE;
+        stopBtn.disabled = false;
+        speakNext();
+    });
+
+    stopBtn.addEventListener("click", function () {
+        stopping = true;
+        window.speechSynthesis.cancel();
+        finish("");
+    });
+
+    // Changing speed mid-read restarts the current sentence at the new rate.
+    rateSel.addEventListener("change", function () {
+        if (!playing || paused) return;
+        stopping = true;
+        window.speechSynthesis.cancel();
+        setTimeout(function () { stopping = false; speakNext(); }, 60);
+    });
+
+    window.addEventListener("pagehide", function () { window.speechSynthesis.cancel(); });
+})();
+</script>
+</div>
+<!-- ═══ END OPTIMA READ-ALOUD PLAYER ═══ -->
+
+    <!-- Title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #0e1c42; margin-bottom: 6px;">Lesson 21</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">K-Pop and the Reading Challenge</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- CORE VISUAL FIRST: culture card + treble-staff reference -->
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 20px;">
+
+        <!-- VISUAL A: music around the world / K-Pop culture card -->
+        <div style="flex: 1; min-width: 280px; background: #F1ECF9; border: 1px solid #D6C8EE; border-top: 4px solid #6B4E9E; border-radius: 10px; padding: 18px 20px;">
+            <div style="font-size: 15px; color: #5A3E8C; margin-bottom: 10px;">&#127757; MUSIC AROUND THE WORLD</div>
+            <div style="font-size: 20px; color: #0E1C42; margin-bottom: 8px;"><strong>What is K-Pop?</strong></div>
+            <div style="font-size: 16px; color: #1a2340; line-height: 1.7;">K-Pop is popular music from <strong>South Korea</strong>. The "K" stands for Korea and "Pop" stands for popular. It mixes singing, dancing, and bright videos, and fans listen to it all over the world.</div>
+            <div style="margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px;">
+                <span style="background: #FFFFFF; border: 1px solid #D6C8EE; border-radius: 14px; padding: 5px 12px; font-size: 16px; color: #5A3E8C;">&#128205; From: South Korea</span>
+                <span style="background: #FFFFFF; border: 1px solid #D6C8EE; border-radius: 14px; padding: 5px 12px; font-size: 16px; color: #5A3E8C;">&#127908; Singing and dancing</span>
+                <span style="background: #FFFFFF; border: 1px solid #D6C8EE; border-radius: 14px; padding: 5px 12px; font-size: 16px; color: #5A3E8C;">&#127759; Heard worldwide</span>
+            </div>
+        </div>
+
+        <!-- VISUAL B: CSS treble-staff note-name reference -->
+        <div style="flex: 1; min-width: 280px; background: #E6F6EE; border: 1px solid #BFE6CF; border-top: 4px solid #2E9E6B; border-radius: 10px; padding: 18px 20px;">
+            <div style="font-size: 15px; color: #1B6B47; margin-bottom: 10px;">&#127932; TREBLE-STAFF QUICK REFERENCE</div>
+            <div style="font-size: 16px; color: #1a2340; margin-bottom: 6px;"><strong>Lines</strong> (bottom to top): <span style="color: #2E9E6B;">E G B D F</span> &middot; <em>Every Good Boy Does Fine</em></div>
+            <!-- CSS staff: 5 lines, with line + space note letters -->
+            <div style="background: #FFFFFF; border: 1px solid #BFE6CF; border-radius: 8px; padding: 16px 18px; margin: 10px 0;">
+                <div style="position: relative; height: 120px;">
+                    <!-- five lines -->
+                    <div style="position: absolute; left: 0; right: 0; top: 8px; height: 2px; background: #0E1C42;"></div>
+                    <div style="position: absolute; left: 0; right: 0; top: 36px; height: 2px; background: #0E1C42;"></div>
+                    <div style="position: absolute; left: 0; right: 0; top: 64px; height: 2px; background: #0E1C42;"></div>
+                    <div style="position: absolute; left: 0; right: 0; top: 92px; height: 2px; background: #0E1C42;"></div>
+                    <div style="position: absolute; left: 0; right: 0; top: 120px; height: 2px; background: #0E1C42;"></div>
+                    <!-- line letters (top to bottom on screen: F D B G E) sit ON each line -->
+                    <div style="position: absolute; right: 4px; top: 0px; font-size: 15px; color: #2E9E6B;"><strong>F</strong></div>
+                    <div style="position: absolute; right: 4px; top: 28px; font-size: 15px; color: #2E9E6B;"><strong>D</strong></div>
+                    <div style="position: absolute; right: 4px; top: 56px; font-size: 15px; color: #2E9E6B;"><strong>B</strong></div>
+                    <div style="position: absolute; right: 4px; top: 84px; font-size: 15px; color: #2E9E6B;"><strong>G</strong></div>
+                    <div style="position: absolute; right: 4px; top: 112px; font-size: 15px; color: #2E9E6B;"><strong>E</strong></div>
+                    <!-- space letters (top to bottom: E C A F) sit BETWEEN lines -->
+                    <div style="position: absolute; left: 18px; top: 16px; font-size: 15px; color: #6B4E9E;"><strong>E</strong></div>
+                    <div style="position: absolute; left: 18px; top: 44px; font-size: 15px; color: #6B4E9E;"><strong>C</strong></div>
+                    <div style="position: absolute; left: 18px; top: 72px; font-size: 15px; color: #6B4E9E;"><strong>A</strong></div>
+                    <div style="position: absolute; left: 18px; top: 100px; font-size: 15px; color: #6B4E9E;"><strong>F</strong></div>
+                </div>
+            </div>
+            <div style="font-size: 16px; color: #1a2340;"><strong>Spaces</strong> (bottom to top): <span style="color: #6B4E9E;">F A C E</span> &middot; spells the word FACE</div>
+        </div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">How does music travel from one country to the whole world?</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.7;">This week you meet <strong>K-Pop</strong>, popular music that began in South Korea and is now loved worldwide. It is a great example of how music crosses cultures. You will also sharpen your treble-clef note reading in a fun challenge.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;"><strong>I can</strong> describe what K-Pop is and how music crosses cultures.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;"><strong>I can</strong> identify treble-clef notes by name.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;"><strong>I can</strong> perform a short rhythm.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">4</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;"><strong>I can</strong> describe how technology has changed how audiences experience music, and explain how to listen to and get music safely and legally.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span><div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Headphones or speakers</div></div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span><div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your Music Journal organizer</div></div>
+    </div>
+
+    <!-- PART 1: check-in -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 14px;">&#9889; PART 1 &middot; LET'S BEGIN</div>
+        <div class="optima-widget ow-reflect">
+            <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+            <div class="widget-question">Have you ever heard music from another country, like K-Pop? (There is no wrong answer.)</div>
+            <div class="widget-options">
+                <button data-response="Great. This week you will learn what makes K-Pop special and how it travels around the world.">&#127908; Yes, I love K-Pop</button>
+                <button data-response="Perfect. K-Pop comes from South Korea and is popular worldwide, and you will hear why.">&#127925; I have heard of it</button>
+                <button data-response="That is okay. By the end of this lesson you will know what K-Pop is and how music crosses cultures.">&#129300; Not yet</button>
+            </div>
+            <div class="widget-feedback"></div>
+            <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <!-- PART 2: K-Pop + how music crosses cultures + video -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 14px;">&#127757; PART 2 &middot; HOW MUSIC CROSSES CULTURES</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.7; margin: 0 0 6px 0;">A long time ago, people only heard the music made near their homes. Today music travels fast through the internet, videos, and streaming. A song made in one country can reach the whole world in days. K-Pop is a clear example: it started in South Korea and now has fans on every continent.</p>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.7; margin: 10px 0 6px 0;">When music travels like this, cultures share ideas. Listeners learn new languages, new dance moves, and new sounds. Groups and artists with names such as "BTS," "BLACKPINK," and "Babymonster," and the well-known song "Gangnam Style" by the artist "PSY," helped K-Pop become known worldwide. Watch this video to see how K-Pop grew.</p>
+        <div class="mi-video">
+            <iframe src="https://www.youtube-nocookie.com/embed/4tw1TfZd3hc" title="What is K-Pop" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p style="margin: 4px 0 2px 0;"><a href="https://www.youtube.com/watch?v=4tw1TfZd3hc" target="_blank" rel="noopener" style="font-size: 16px; color: #6B4E9E; text-decoration: none; border: 1px solid #6B4E9E; border-radius: 6px; padding: 5px 12px; display: inline-block;">&#9654; Watch on YouTube (opens in a new tab)</a></p>
+        <p class="mi-video-credit">Video hosted on YouTube. It belongs to its creator and is shared here for learning.</p>
+
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.7; margin: 14px 0 6px 0;">K-Pop's worldwide reach did not happen by accident. It happened because <strong>technology changed how audiences experience music</strong>.</p>
+
+        <!-- VISUAL: then vs now, technology and audience experience -->
+        <div class="mi-tech-row">
+            <div class="mi-tech-card" style="background: #EFF8F3; border: 1px solid #BFE6CE; border-top: 5px solid #2E9E6B;">
+                <div class="mi-tech-icon">&#128250;</div>
+                <div class="mi-tech-title"><strong>Then</strong></div>
+                <div class="mi-tech-text">Radio, records, and cassette tapes let people hear music mostly from their own town or country. Hearing a song from far away could take weeks or never happen at all.</div>
+            </div>
+            <div class="mi-tech-card" style="background: #F6F3FB; border: 1px solid #D6C8EE; border-top: 5px solid #6B4E9E;">
+                <div class="mi-tech-icon">&#128241;</div>
+                <div class="mi-tech-title"><strong>Now</strong></div>
+                <div class="mi-tech-text">Streaming and video sites let anyone with a connection hear a brand-new song the same day it is released, anywhere in the world. That speed is a big reason K-Pop could reach fans everywhere so fast.</div>
+            </div>
+        </div>
+
+        <!-- Safe and legal listening -->
+        <div style="background: #E6F6EE; border-left: 5px solid #2E9E6B; border-top: 3px solid #57C98E; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 15px; color: #1B6B47; margin-bottom: 8px;">&#128274; LISTENING SAFELY AND LEGALLY</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">All that easy access means it matters more than ever to get music the right way. Listen through <strong>official, licensed apps and sites</strong> (the kind a parent, guardian, or your school already trusts), not through downloads someone copied without permission. Artists and the people who work behind the scenes are paid when music is streamed or bought through real channels. If you are ever unsure whether a source is legitimate, ask a trusted adult before you download or share anything.</div>
+        </div>
+    </div>
+
+    <!-- PART 3: Reading Challenge + treble staff + second video + ow-select -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 14px;">&#127932; PART 3 &middot; THE READING CHALLENGE</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.7; margin: 0 0 6px 0;">Lively music like K-Pop is fun to play, and to play any music you need to read notes. This week you take a treble-clef reading challenge. Use the quick reference at the top of this lesson to remember the line and space notes.</p>
+
+        <!-- VISUAL: line vs space memory cards -->
+        <div class="mi-roots">
+            <div class="mi-root"><div class="mi-root-name"><strong>Lines</strong></div><div class="mi-root-sub">E G B D F</div></div>
+            <span class="mi-arrow">&#127925;</span>
+            <div class="mi-root"><div class="mi-root-name"><strong>Spaces</strong></div><div class="mi-root-sub">F A C E</div></div>
+        </div>
+
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.7; margin: 12px 0 0 0;">Here is a quick way to remember it:</p>
+
+        <!-- VISUAL: note-name reminder card -->
+        <div class="mi-fact">
+            <div class="mi-fact-line"><span class="mi-fact-label">Line saying:</span> Every Good Boy Does Fine spells E G B D F</div>
+            <div class="mi-fact-line"><span class="mi-fact-label">Space word:</span> the four spaces spell F A C E</div>
+            <div class="mi-fact-line"><span class="mi-fact-label">Lines:</span> the note sits right on a line</div>
+            <div class="mi-fact-line"><span class="mi-fact-label">Spaces:</span> the note sits in the gap between two lines</div>
+        </div>
+
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.7; margin: 12px 0 0 0;">Watch this short video to review how to read notes on the treble staff.</p>
+        <div class="mi-video">
+            <iframe src="https://www.youtube-nocookie.com/embed/yebNIHKAC4A" title="Reading treble-clef notes" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p style="margin: 4px 0 2px 0;"><a href="https://www.youtube.com/watch?v=yebNIHKAC4A" target="_blank" rel="noopener" style="font-size: 16px; color: #6B4E9E; text-decoration: none; border: 1px solid #6B4E9E; border-radius: 6px; padding: 5px 12px; display: inline-block;">&#9654; Watch on YouTube (opens in a new tab)</a></p>
+        <p class="mi-video-credit">Video hosted on YouTube. It belongs to its creator and is shared here for learning.</p>
+
+        <div class="optima-widget ow-select">
+            <div class="widget-kicker">&#9889; TRY IT &middot; K-POP AND READING CHECK</div>
+            <div class="widget-question">Pick the best answer for each one.</div>
+
+            <div class="widget-row" data-correct="1" data-fb="Yes. K-Pop is popular music from South Korea." data-hint="Think about where the K in K-Pop comes from.">
+                <div class="widget-row-prompt">1. K-Pop is popular music that began in which country?</div>
+                <div class="widget-options">
+                    <button data-choice="0">Brazil</button>
+                    <button data-choice="1">South Korea</button>
+                    <button data-choice="2">Italy</button>
+                    <button data-choice="3">Australia</button>
+                </div>
+            </div>
+
+            <div class="widget-row" data-correct="3" data-fb="Right. Today music travels fast through the internet and videos, so it crosses cultures." data-hint="Think about how a song reaches other countries today.">
+                <div class="widget-row-prompt">2. How does music cross cultures so easily today?</div>
+                <div class="widget-options">
+                    <button data-choice="0">It cannot leave its home country</button>
+                    <button data-choice="1">Only by mail</button>
+                    <button data-choice="2">Only at live concerts</button>
+                    <button data-choice="3">Through the internet, videos, and streaming</button>
+                </div>
+            </div>
+
+            <div class="widget-row" data-correct="0" data-fb="Right. Streaming and video sites let a song reach fans everywhere the same day it comes out." data-hint="Think about the Now card in the visual above.">
+                <div class="widget-row-prompt">3. What changed about music technology made K-Pop able to reach fans worldwide so quickly?</div>
+                <div class="widget-options">
+                    <button data-choice="0">Streaming and video sites let music travel instantly</button>
+                    <button data-choice="1">Radio stations got louder</button>
+                    <button data-choice="2">Cassette tapes became cheaper</button>
+                    <button data-choice="3">More concert halls were built</button>
+                </div>
+            </div>
+
+            <div class="widget-row" data-correct="1" data-fb="Yes. Listening through official, licensed apps and sites means artists get paid and you are getting music the right way." data-hint="Think about the Listening Safely and Legally box above.">
+                <div class="widget-row-prompt">4. What is the safe and legal way to listen to or get new music?</div>
+                <div class="widget-options">
+                    <button data-choice="0">Download any copy you find online</button>
+                    <button data-choice="1">Use official, licensed apps and sites</button>
+                    <button data-choice="2">Only listen if a friend shares a copied file</button>
+                    <button data-choice="3">It does not matter where music comes from</button>
+                </div>
+            </div>
+
+            <div class="widget-row" data-correct="2" data-fb="Correct. The treble-staff lines from bottom to top are E G B D F." data-hint="Use the line saying: Every Good Boy Does Fine.">
+                <div class="widget-row-prompt">5. The treble-staff line notes from bottom to top are...</div>
+                <div class="widget-options">
+                    <button data-choice="0">F A C E</button>
+                    <button data-choice="1">C D E F G</button>
+                    <button data-choice="2">E G B D F</button>
+                    <button data-choice="3">G A B C D</button>
+                </div>
+            </div>
+
+            <div class="widget-row" data-correct="0" data-fb="Yes. The four treble-staff spaces spell the word F A C E." data-hint="The spaces spell a short word you can read.">
+                <div class="widget-row-prompt">6. The treble-staff space notes spell which word?</div>
+                <div class="widget-options">
+                    <button data-choice="0">FACE</button>
+                    <button data-choice="1">EGBD</button>
+                    <button data-choice="2">GABC</button>
+                    <button data-choice="3">DFAC</button>
+                </div>
+            </div>
+
+            <button class="widget-reset">Reset</button>
+        </div>
+
+        <!-- Need Help (green) -->
+        <div style="background: #E6F6EE; border-left: 5px solid #2E9E6B; border-top: 3px solid #57C98E; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 15px; color: #1B6B47; margin-bottom: 8px;">&#129303; NEED HELP?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Stuck on a note name? Look at the treble-staff reference at the top of this lesson. Remember: lines are E G B D F and spaces spell FACE. Still stuck? Message your teacher in your Canvas Inbox.</div>
+        </div>
+
+        <!-- Go Further (purple) -->
+        <details style="background: #FFFFFF; border: 1px solid #D6C8EE; border-left: 4px solid #6B4E9E; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 17px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #6B4E9E;">&#9654;</span>&nbsp; Go Further: practice your note reading
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.7; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EFE8F8;">
+                Want extra practice before the quiz? Draw a treble staff in your Music Journal organizer and label each line and space. Then point to a note and say its name out loud. The more you say the names, the faster reading becomes.
+            </div>
+        </details>
+    </div>
+
+    <!-- Music Journal tie-in -->
+    <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-radius: 6px; padding: 16px 22px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 10px;">&#128221; ADD A WEEKLY ENTRY TO YOUR MUSIC JOURNAL</div>
+        <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">Open your <strong>Music Journal organizer</strong> and add a new Weekly Entry. For <em>What I learned</em>, write one sentence about how music crosses cultures and one sentence about how technology changed the way audiences experience music. For <em>A new word</em>, write "K-Pop" and what it means. You will reuse these notes this week.</div>
+    </div>
+
+    <!-- What you'll do next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div><div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Note Identification Quiz (Reading Challenge)</strong></div><div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A Canvas quiz that checks how well you can name treble-clef notes. This is your mid-Quarter-3 reading checkpoint. You get more than one try.</div></div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div><div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>21.4 Rhythm Recording</strong></div><div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Record a short four-measure rhythm inspired by the lively feel of this week's music. Your teacher will listen and give feedback.</div></div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 12px;">&#128170; LOOKING BACK</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.7; margin: 0;">You learned that K-Pop began in South Korea and travels around the world, which shows how music crosses cultures. You also reviewed how to read the treble-clef notes. Keep your note-name skills sharp for the reading challenge ahead.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; MUSIC INTERMEDIATE III &middot; Quarter 3 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 21 &middot; K-Pop and the Reading Challenge</div>
+    <div style="font-size: 11px; color: rgba(255,255,255,0.45); line-height: 1.5;">This lesson links to third-party videos used for educational purposes. They remain the property of their creators. Please do not download or redistribute them.</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

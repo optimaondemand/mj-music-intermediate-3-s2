@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Music Intermediate III: Brass III, The Trombone</title>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS — MUSIC in-lesson palette: green + purple ===== */
+    .optima-widget { background: linear-gradient(135deg, #F1ECF9 0%, #E6F6EE 100%); border: 1px solid #D6C8EE; border-left: 5px solid #6B4E9E; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 15px; color: #5A3E8C; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 18px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D6C8EE; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 16px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D6C8EE; border-radius: 8px; padding: 9px 16px; font-size: 16px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F1ECF9; border-color: #6B4E9E; }
+    .widget-options button.selected { background: #6B4E9E; color: #FFFFFF; border-color: #6B4E9E; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #2E9E6B; padding: 10px 14px; font-size: 16px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 16px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #6B4E9E; color: #6B4E9E; border-radius: 6px; padding: 6px 12px; font-size: 15px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #F1ECF9; }
+
+    /* ===== Video embed (responsive 16:9) ===== */
+    .mi-video { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; margin: 12px 0 4px 0; border: 2px solid #6B4E9E; }
+    .mi-video iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+    .mi-video-credit { font-size: 15px; color: #888; font-style: italic; margin: 0 0 14px 2px; }
+
+    /* ===== Roots of Rock and Roll visual ===== */
+    .mi-roots { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px; margin: 16px 0; }
+    .mi-root { background: #FFFFFF; border: 1px solid #D6C8EE; border-top: 4px solid #2E9E6B; border-radius: 10px; padding: 12px 16px; text-align: center; min-width: 110px; }
+    .mi-root-name { font-size: 16px; color: #0E1C42; }
+    .mi-root-sub { font-size: 15px; color: #5A3E8C; margin-top: 2px; }
+    .mi-arrow { font-size: 24px; color: #6B4E9E; }
+    .mi-rocknroll { background: #6B4E9E; color: #FFFFFF; border-radius: 10px; padding: 14px 20px; text-align: center; min-width: 150px; }
+    .mi-rocknroll-name { font-size: 18px; }
+
+    /* ===== Fact card ===== */
+    .mi-fact { background: #F1ECF9; border: 1px solid #D6C8EE; border-left: 5px solid #6B4E9E; border-radius: 8px; padding: 16px 20px; margin: 14px 0; }
+    .mi-fact-line { font-size: 16px; color: #0E1C42; line-height: 1.8; }
+    .mi-fact-label { color: #5A3E8C; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">MUSIC INTERMEDIATE III</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q4 &middot; Module 31</div>
+        <div style="font-size: 12px; color: #666;">Brass III</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">The Trombone</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Trombone and accidentals</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">About how long</div>
+        <div style="font-size: 16px; color: #0e1c42;">about 40 min</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+<!-- ═══ OPTIMA READ-ALOUD PLAYER ═══ -->
+<div id="optima-read-aloud">
+<style>
+    #optima-read-aloud { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 14px 18px; margin: 0 0 20px 0; }
+    #optima-read-aloud .ora-kicker { font-size: 11px; color: #1B6A94; letter-spacing: 0.4px; margin-bottom: 10px; }
+    #optima-read-aloud .ora-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+    #optima-read-aloud .ora-controls button { border-radius: 8px; padding: 8px 16px; font-size: 14px; cursor: pointer; font-family: inherit; transition: all 0.15s; }
+    #ora-play { background: #0E1C42; color: #FFFFFF; border: 1.5px solid #0E1C42; }
+    #ora-play:hover:enabled { background: #1B2D5E; }
+    #ora-play:disabled { background: #D0D9E8; border-color: #D0D9E8; color: #6b7a99; cursor: default; }
+    #ora-stop { background: #FFFFFF; color: #0E1C42; border: 1.5px solid #D0D9E8; }
+    #ora-stop:hover:enabled { background: #F4F6FA; border-color: #55C8E8; }
+    #ora-stop:disabled { color: #999; border-color: #E4E9F2; cursor: default; }
+    #optima-read-aloud .ora-speed { font-size: 12px; color: #6b7a99; display: flex; align-items: center; gap: 6px; }
+    #ora-rate { font-family: inherit; font-size: 13px; color: #0E1C42; border: 1.5px solid #D0D9E8; border-radius: 6px; padding: 5px 8px; background: #FFFFFF; }
+    #ora-status { font-size: 12px; color: #666; }
+    .ora-highlight { background: #FDF3E3 !important; box-shadow: inset 4px 0 0 #C7922C; border-radius: 4px; transition: background 0.2s; }
+</style>
+    <div class="ora-kicker">&#128266; READ ALOUD &mdash; LISTEN TO THIS PAGE</div>
+    <div class="ora-controls">
+        <button id="ora-play" type="button" aria-label="Listen to this page">&#9654;&#65039; Listen</button>
+        <button id="ora-stop" type="button" aria-label="Stop reading" disabled>&#9632; Stop</button>
+        <label class="ora-speed">Speed
+            <select id="ora-rate" aria-label="Reading speed">
+                <option value="0.8">Slower</option>
+                <option value="1" selected>Normal</option>
+                <option value="1.25">Faster</option>
+            </select>
+        </label>
+        <span id="ora-status" role="status" aria-live="polite"></span>
+    </div>
+<script>
+(function () {
+    "use strict";
+    var playBtn  = document.getElementById("ora-play");
+    var stopBtn  = document.getElementById("ora-stop");
+    var rateSel  = document.getElementById("ora-rate");
+    var statusEl = document.getElementById("ora-status");
+
+    if (!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)) {
+        playBtn.disabled = true;
+        rateSel.disabled = true;
+        statusEl.textContent = "Read-aloud is not supported in this browser.";
+        return;
+    }
+
+    var LABEL_PLAY   = "▶️ Listen";
+    var LABEL_PAUSE  = "⏸️ Pause";
+    var LABEL_RESUME = "▶️ Resume";
+    var BLOCK_SEL = "p, li, h1, h2, h3, h4, h5, h6, blockquote, td, th, dt, dd, figcaption, div";
+    var SKIP_SEL  = "#optima-read-aloud, [data-ra-skip], button, script, style, select, noscript, iframe";
+
+    var queue = [];        // [{ el, text }] — one entry per sentence
+    var idx = 0;
+    var playing = false, paused = false, stopping = false;
+    var currentBlock = null;
+    var currentUtterance = null;  // held to dodge a Chrome garbage-collection bug
+
+    var voices = [];
+    function loadVoices() { voices = window.speechSynthesis.getVoices(); }
+    loadVoices();
+    if ("onvoiceschanged" in window.speechSynthesis) {
+        window.speechSynthesis.onvoiceschanged = loadVoices;
+    }
+    function pickVoice() {
+        if (!voices.length) loadVoices();
+        var en = voices.filter(function (v) { return /^en/i.test(v.lang); });
+        return en.filter(function (v) { return /natural/i.test(v.name); })[0]
+            || en.filter(function (v) { return /google us english/i.test(v.name); })[0]
+            || en.filter(function (v) { return v.default; })[0]
+            || en[0] || null;
+    }
+
+    function isVisible(el) {
+        return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length);
+    }
+
+    // Walk text nodes, attach each to its nearest block ancestor, split into sentences.
+    function collectQueue() {
+        var root = document.querySelector("[data-readaloud-root]")
+                || document.querySelector(".canvas-frame")
+                || document.body;
+        var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+        var items = [];   // [{ el, text }] — one entry per block, in reading order
+        var node;
+        while ((node = walker.nextNode())) {
+            if (!/\S/.test(node.textContent)) continue;
+            var el = node.parentElement;
+            if (!el || el.closest(SKIP_SEL)) continue;
+            if (!isVisible(el)) continue;
+            var block = el.closest(BLOCK_SEL) || root;
+            var last = items[items.length - 1];
+            if (last && last.el === block) last.text += " " + node.textContent;
+            else items.push({ el: block, text: node.textContent });
+        }
+        var q = [];
+        items.forEach(function (item) {
+            var clean = item.text.replace(/\s+/g, " ").trim();
+            if (!clean) return;
+            var sentences = clean.match(/[^.!?]+[.!?]+[”"')\]]*\s*|[^.!?]+$/g) || [clean];
+            sentences.forEach(function (s) {
+                s = s.trim();
+                if (s) q.push({ el: item.el, text: s });
+            });
+        });
+        return q;
+    }
+
+    function highlight(el) {
+        if (el === currentBlock) return;
+        clearHighlight();
+        currentBlock = el;
+        if (el && el !== document.body) {
+            el.classList.add("ora-highlight");
+            try { el.scrollIntoView({ behavior: "smooth", block: "nearest" }); } catch (e) {}
+        }
+    }
+    function clearHighlight() {
+        if (currentBlock) currentBlock.classList.remove("ora-highlight");
+        currentBlock = null;
+    }
+
+    function speakNext() {
+        if (idx >= queue.length) { finish("Finished reading this page."); return; }
+        var item = queue[idx];
+        highlight(item.el);
+        var u = new SpeechSynthesisUtterance(item.text);
+        u.rate = parseFloat(rateSel.value) || 1;
+        var v = pickVoice();
+        if (v) u.voice = v;
+        u.onend = function () {
+            if (stopping) return;
+            idx++;
+            speakNext();
+        };
+        u.onerror = function (e) {
+            if (stopping || e.error === "canceled" || e.error === "interrupted") return;
+            idx++;
+            speakNext();
+        };
+        currentUtterance = u;
+        window.speechSynthesis.speak(u);
+        statusEl.textContent = "Reading… " + (idx + 1) + " / " + queue.length;
+    }
+
+    function finish(message) {
+        playing = false;
+        paused = false;
+        clearHighlight();
+        playBtn.textContent = LABEL_PLAY;
+        stopBtn.disabled = true;
+        statusEl.textContent = message || "";
+        currentUtterance = null;
+    }
+
+    playBtn.addEventListener("click", function () {
+        if (playing && !paused) {
+            window.speechSynthesis.pause();
+            paused = true;
+            playBtn.textContent = LABEL_RESUME;
+            statusEl.textContent = "Paused";
+            return;
+        }
+        if (playing && paused) {
+            window.speechSynthesis.resume();
+            paused = false;
+            playBtn.textContent = LABEL_PAUSE;
+            statusEl.textContent = "Reading… " + (idx + 1) + " / " + queue.length;
+            return;
+        }
+        queue = collectQueue();
+        if (!queue.length) { statusEl.textContent = "Nothing to read on this page."; return; }
+        idx = 0;
+        stopping = false;
+        playing = true;
+        paused = false;
+        window.speechSynthesis.cancel();
+        playBtn.textContent = LABEL_PAUSE;
+        stopBtn.disabled = false;
+        speakNext();
+    });
+
+    stopBtn.addEventListener("click", function () {
+        stopping = true;
+        window.speechSynthesis.cancel();
+        finish("");
+    });
+
+    // Changing speed mid-read restarts the current sentence at the new rate.
+    rateSel.addEventListener("change", function () {
+        if (!playing || paused) return;
+        stopping = true;
+        window.speechSynthesis.cancel();
+        setTimeout(function () { stopping = false; speakNext(); }, 60);
+    });
+
+    window.addEventListener("pagehide", function () { window.speechSynthesis.cancel(); });
+})();
+</script>
+</div>
+<!-- ═══ END OPTIMA READ-ALOUD PLAYER ═══ -->
+
+    <!-- Title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #0e1c42; margin-bottom: 6px;">Brass III</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">The Trombone</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- CORE VISUAL FIRST: trombone fact card + accidentals reminder -->
+    <div style="background: #FFFFFF; border-top: 3px solid #6B4E9E; border: 1px solid #D6C8EE; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #5A3E8C; margin-bottom: 6px;">&#127925; LOOK FIRST</div>
+        <div style="font-size: 20px; color: #0e1c42; margin-bottom: 10px;">The trombone and the three accidentals</div>
+
+        <!-- Trombone fact card highlighting the slide -->
+        <div style="background: #F1ECF9; border: 1px solid #D6C8EE; border-top: 5px solid #6B4E9E; border-radius: 10px; padding: 18px 20px; margin-bottom: 16px;">
+            <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 12px;">
+                <div style="font-size: 34px;">&#127930;</div>
+                <div>
+                    <div style="font-size: 19px; color: #0E1C42;"><strong>Trombone</strong></div>
+                    <div style="font-size: 16px; color: #5A3E8C;">Brass family</div>
+                </div>
+            </div>
+            <!-- Slide diagram drawn in CSS -->
+            <div style="display: flex; align-items: center; gap: 0; margin: 10px 0 6px 0;">
+                <div style="height: 16px; flex: 2; background: #6B4E9E; border-radius: 8px 0 0 8px;"></div>
+                <div style="height: 26px; flex: 3; background: #B79FE0; border: 2px dashed #6B4E9E; border-left: 0; border-radius: 0 8px 8px 0; display: flex; align-items: center; justify-content: center; color: #3C2A66; font-size: 15px;">&#8592; the slide moves &#8594;</div>
+            </div>
+            <div style="font-size: 16px; color: #0E1C42; line-height: 1.7;">The trombone changes pitch with a sliding tube called a <strong>slide</strong> instead of valves. As the player pushes the slide out and pulls it back in, the pitch glides up and down. This gives the trombone its smooth, sliding sound.</div>
+        </div>
+
+        <!-- Accidentals reminder -->
+        <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+            <div style="flex: 1; min-width: 150px; background: #E6F6EE; border: 1px solid #B7E3CB; border-top: 5px solid #2E9E6B; border-radius: 10px; padding: 14px 16px; text-align: center;">
+                <div style="font-size: 30px; color: #1B6B47;"><strong>&#9839;</strong></div>
+                <div style="font-size: 17px; color: #0E1C42;"><strong>Sharp</strong></div>
+                <div style="font-size: 16px; color: #1B6B47;">raises a note one half step</div>
+            </div>
+            <div style="flex: 1; min-width: 150px; background: #E6F6EE; border: 1px solid #B7E3CB; border-top: 5px solid #2E9E6B; border-radius: 10px; padding: 14px 16px; text-align: center;">
+                <div style="font-size: 30px; color: #1B6B47;"><strong>&#9837;</strong></div>
+                <div style="font-size: 17px; color: #0E1C42;"><strong>Flat</strong></div>
+                <div style="font-size: 16px; color: #1B6B47;">lowers a note one half step</div>
+            </div>
+            <div style="flex: 1; min-width: 150px; background: #E6F6EE; border: 1px solid #B7E3CB; border-top: 5px solid #2E9E6B; border-radius: 10px; padding: 14px 16px; text-align: center;">
+                <div style="font-size: 30px; color: #1B6B47;"><strong>&#9838;</strong></div>
+                <div style="font-size: 17px; color: #0E1C42;"><strong>Natural</strong></div>
+                <div style="font-size: 16px; color: #1B6B47;">cancels a sharp or flat</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">How does the trombone change pitch, and how do accidentals change a note?</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.7;">The <strong>trombone</strong> is a brass instrument that slides to new pitches. This week you meet the trombone and its slide, and you practice reading a short passage that includes <strong>accidentals</strong>, the sharps, flats, and naturals that change a note for a moment.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;"><strong>I can</strong> describe the trombone and explain how its slide works.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;"><strong>I can</strong> read music that includes accidentals.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;"><strong>I can</strong> perform a short reading out loud.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span><div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Headphones or speakers</div></div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span><div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your Music Journal organizer</div></div>
+    </div>
+
+    <!-- PART 1: check-in -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 14px;">&#9889; PART 1 &middot; LET'S BEGIN</div>
+        <div class="optima-widget ow-reflect">
+            <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+            <div class="widget-question">Have you ever seen or heard a trombone before? (There is no wrong answer.)</div>
+            <div class="widget-options">
+                <button data-response="Great. This week you will look closely at how the slide makes the trombone glide from pitch to pitch.">&#127930; Yes, I know the trombone</button>
+                <button data-response="Nice. You may have heard its smooth, sliding sound in a band or a cartoon without knowing its name.">&#127925; I think I have heard it</button>
+                <button data-response="That is okay. By the end of this lesson you will be able to describe the trombone and its slide.">&#129300; Not sure</button>
+            </div>
+            <div class="widget-feedback"></div>
+            <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <!-- PART 2: the trombone + video -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 14px;">&#127930; PART 2 &middot; MEET THE TROMBONE</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.7; margin: 0 0 12px 0;">The trombone is part of the brass family. Like other brass instruments, the player makes a buzzing sound with the lips into a cup-shaped mouthpiece. But the trombone is different in one big way.</p>
+
+        <div class="mi-fact">
+            <div class="mi-fact-line"><span class="mi-fact-label">Most brass:</span> trumpets and tubas change pitch with <strong>valves</strong>, small buttons the player presses.</div>
+        </div>
+        <div class="mi-fact">
+            <div class="mi-fact-line"><span class="mi-fact-label">Trombone:</span> changes pitch with a <strong>slide</strong>, a tube the player pushes out and pulls back in. Sliding the tube gives the trombone its smooth, sliding sound.</div>
+        </div>
+
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.7; margin: 12px 0 6px 0;">Watch and listen to how the trombone sounds and how the slide moves.</p>
+        <div class="mi-video">
+            <iframe src="https://www.youtube-nocookie.com/embed/XtnoejeUylc" title="The trombone" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p style="margin: 4px 0 2px 0;"><a href="https://www.youtube.com/watch?v=XtnoejeUylc" target="_blank" rel="noopener" style="font-size: 16px; color: #6B4E9E; text-decoration: none; border: 1px solid #6B4E9E; border-radius: 6px; padding: 5px 12px; display: inline-block;">&#9654; Watch on YouTube (opens in a new tab)</a></p>
+        <p class="mi-video-credit">Video hosted on YouTube. It belongs to its creator and is shared here for learning.</p>
+    </div>
+
+    <!-- PART 3: accidentals + widget -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; READING WITH ACCIDENTALS</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.7; margin: 0 0 6px 0;">An <strong>accidental</strong> is a symbol that changes a note for a moment. There are three you should know. A <strong>sharp</strong> raises a note one half step. A <strong>flat</strong> lowers a note one half step. A <strong>natural</strong> cancels a sharp or a flat and brings the note back to where it started.</p>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.7; margin: 12px 0 6px 0;">When you read a passage with accidentals, look just to the left of a note. If you see one of these three symbols, change the note before you play or say it.</p>
+
+        <!-- Mini reading example with accidentals drawn in CSS -->
+        <div style="background: #FFFFFF; border: 1px solid #D6C8EE; border-radius: 10px; padding: 18px; text-align: center; margin: 12px 0 6px 0;">
+            <div style="font-size: 15px; color: #5A3E8C; margin-bottom: 10px;">Read these notes left to right. Watch for the accidentals.</div>
+            <div style="display: inline-flex; gap: 20px; align-items: flex-end;">
+                <div style="text-align: center;"><div style="font-size: 30px; color: #2E9E6B;"><strong>F</strong></div></div>
+                <div style="text-align: center;"><div style="font-size: 30px; color: #6B4E9E;"><strong>&#9839;F</strong></div><div style="font-size: 15px; color: #5A3E8C;">sharp</div></div>
+                <div style="text-align: center;"><div style="font-size: 30px; color: #6B4E9E;"><strong>&#9838;F</strong></div><div style="font-size: 15px; color: #5A3E8C;">natural</div></div>
+                <div style="text-align: center;"><div style="font-size: 30px; color: #2E9E6B;"><strong>E</strong></div></div>
+                <div style="text-align: center;"><div style="font-size: 30px; color: #6B4E9E;"><strong>&#9837;B</strong></div><div style="font-size: 15px; color: #5A3E8C;">flat</div></div>
+            </div>
+        </div>
+
+        <div class="optima-widget ow-select">
+            <div class="widget-kicker">&#9889; TRY IT &middot; TROMBONE AND ACCIDENTALS CHECK</div>
+            <div class="widget-question">Pick the best answer for each one.</div>
+
+            <div class="widget-row" data-correct="1" data-fb="Right. The trombone changes pitch by sliding a tube in and out." data-hint="Think about the part that slides out and back in.">
+                <div class="widget-row-prompt">1. How does the trombone change pitch?</div>
+                <div class="widget-options">
+                    <button data-choice="0">By pressing valves</button>
+                    <button data-choice="1">By moving a slide in and out</button>
+                    <button data-choice="2">By plucking strings</button>
+                    <button data-choice="3">By hitting it with a stick</button>
+                </div>
+            </div>
+
+            <div class="widget-row" data-correct="2" data-fb="Yes. A sharp raises a note one half step." data-hint="Look back at the three accidentals card.">
+                <div class="widget-row-prompt">2. What does a sharp do to a note?</div>
+                <div class="widget-options">
+                    <button data-choice="0">It makes the note longer</button>
+                    <button data-choice="1">It lowers the note one half step</button>
+                    <button data-choice="2">It raises the note one half step</button>
+                    <button data-choice="3">It makes the note silent</button>
+                </div>
+            </div>
+
+            <div class="widget-row" data-correct="0" data-fb="Correct. A natural cancels a sharp or a flat." data-hint="Which symbol brings the note back to where it started?">
+                <div class="widget-row-prompt">3. Which accidental cancels a sharp or a flat?</div>
+                <div class="widget-options">
+                    <button data-choice="0">A natural</button>
+                    <button data-choice="1">A sharp</button>
+                    <button data-choice="2">A flat</button>
+                    <button data-choice="3">A rest</button>
+                </div>
+            </div>
+
+            <div class="widget-row" data-correct="3" data-fb="Yes. The trombone is part of the brass family." data-hint="Players buzz their lips into a cup-shaped mouthpiece.">
+                <div class="widget-row-prompt">4. Which family does the trombone belong to?</div>
+                <div class="widget-options">
+                    <button data-choice="0">Strings</button>
+                    <button data-choice="1">Woodwinds</button>
+                    <button data-choice="2">Percussion</button>
+                    <button data-choice="3">Brass</button>
+                </div>
+            </div>
+
+            <button class="widget-reset">Reset</button>
+        </div>
+
+        <!-- Need Help (green) -->
+        <div style="background: #E6F6EE; border-left: 5px solid #2E9E6B; border-top: 3px solid #57C98E; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 15px; color: #1B6B47; margin-bottom: 8px;">&#129303; NEED HELP?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Not sure what an accidental does? Use the three-symbol card above. A sharp raises, a flat lowers, and a natural cancels. Still stuck? Message your teacher in your Canvas Inbox.</div>
+        </div>
+
+        <!-- Go Further (purple) -->
+        <details style="background: #FFFFFF; border: 1px solid #D6C8EE; border-left: 4px solid #6B4E9E; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 17px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #6B4E9E;">&#9654;</span>&nbsp; Go Further: listen for the slide
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.7; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EFE8F8;">
+                The next time you hear a band or a brass group, listen for a low voice that seems to glide between notes instead of jumping. That gliding sound is the trombone moving its slide. See if you can pick it out by ear.
+            </div>
+        </details>
+    </div>
+
+    <!-- PART 4: reading exercise -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 14px;">&#127932; PART 4 &middot; READ A SHORT PASSAGE</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.7; margin: 0 0 12px 0;">Read these five notes out loud, then say them in time. Watch for the accidentals and change those notes as you read.</p>
+        <div style="background: #FFFFFF; border: 1px solid #D6C8EE; border-radius: 10px; padding: 18px; text-align: center; margin: 6px 0;">
+            <div style="display: inline-flex; gap: 22px; align-items: flex-end;">
+                <div style="text-align: center;"><div style="font-size: 30px; color: #2E9E6B;"><strong>G</strong></div><div style="font-size: 15px; color: #5A3E8C;">line 2</div></div>
+                <div style="text-align: center;"><div style="font-size: 30px; color: #6B4E9E;"><strong>&#9839;F</strong></div><div style="font-size: 15px; color: #5A3E8C;">F sharp</div></div>
+                <div style="text-align: center;"><div style="font-size: 30px; color: #2E9E6B;"><strong>E</strong></div><div style="font-size: 15px; color: #5A3E8C;">line 1</div></div>
+                <div style="text-align: center;"><div style="font-size: 30px; color: #6B4E9E;"><strong>&#9837;B</strong></div><div style="font-size: 15px; color: #5A3E8C;">B flat</div></div>
+                <div style="text-align: center;"><div style="font-size: 30px; color: #6B4E9E;"><strong>&#9838;B</strong></div><div style="font-size: 15px; color: #5A3E8C;">B natural</div></div>
+            </div>
+        </div>
+        <p style="font-size: 16px; color: #5A3E8C; line-height: 1.6; margin: 10px 0 0 0;">You will record this short reading for this week's assignment, so practice it a few times now.</p>
+    </div>
+
+    <!-- Music Journal tie-in -->
+    <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-radius: 6px; padding: 16px 22px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 10px;">&#128221; ADD A WEEKLY ENTRY TO YOUR MUSIC JOURNAL</div>
+        <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">Open your <strong>Music Journal organizer</strong> and add a new Weekly Entry. For <em>What I learned</em>, write one way the trombone is different from other brass instruments. For <em>A new word</em>, write "accidental" and what it means. You will reuse these notes in this week's discussion comment.</div>
+    </div>
+
+    <!-- What you'll do next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div><div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Module 31 Quick Check</strong></div><div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short quiz on the trombone and accidentals. You get more than one try.</div></div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div><div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Module 31 Assignment: Trombone and Reading with Accidentals</strong></div><div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Post a trombone discovery fact in the discussion, then record your short reading with accidentals. Your teacher will read and listen, and give feedback.</div></div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 12px;">&#128170; A LOOK BACK</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.7; margin: 0;">You met the trombone, explained how its slide changes pitch, and practiced reading a passage with accidentals. Keep listening for the trombone's smooth, sliding voice in the music around you.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; MUSIC INTERMEDIATE III &middot; Quarter 4 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Brass III &middot; The Trombone</div>
+    <div style="font-size: 11px; color: rgba(255,255,255,0.45); line-height: 1.5;">This lesson links to third-party videos used for educational purposes. They remain the property of their creators. Please do not download or redistribute them.</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

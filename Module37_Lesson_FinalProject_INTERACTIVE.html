@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Music Intermediate III: Final Music Review Project</title>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS — MUSIC in-lesson palette: green + purple ===== */
+    .optima-widget { background: linear-gradient(135deg, #F1ECF9 0%, #E6F6EE 100%); border: 1px solid #D6C8EE; border-left: 5px solid #6B4E9E; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 15px; color: #5A3E8C; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 18px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D6C8EE; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 16px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D6C8EE; border-radius: 8px; padding: 9px 16px; font-size: 16px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F1ECF9; border-color: #6B4E9E; }
+    .widget-options button.selected { background: #6B4E9E; color: #FFFFFF; border-color: #6B4E9E; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #2E9E6B; padding: 10px 14px; font-size: 16px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 16px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #6B4E9E; color: #6B4E9E; border-radius: 6px; padding: 6px 12px; font-size: 15px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #F1ECF9; }
+
+    /* ===== Video embed (responsive 16:9) ===== */
+    .mi-video { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; margin: 12px 0 4px 0; border: 2px solid #6B4E9E; }
+    .mi-video iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+    .mi-video-credit { font-size: 15px; color: #888; font-style: italic; margin: 0 0 14px 2px; }
+
+    /* ===== 9 sub-page roadmap visual ===== */
+    .mi-road { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+    .mi-road-card { flex: 1 1 150px; min-width: 150px; background: #FFFFFF; border: 1px solid #D6C8EE; border-radius: 10px; padding: 12px 14px; }
+    .mi-road-num { display: inline-block; background: #6B4E9E; color: #fff; font-size: 15px; border-radius: 12px; padding: 2px 10px; margin-bottom: 6px; }
+    .mi-road-name { font-size: 16px; color: #0E1C42; line-height: 1.4; }
+
+    /* ===== Music careers visual ===== */
+    .mi-job-row { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+    .mi-job { flex: 1 1 160px; min-width: 160px; background: #FFFFFF; border: 1px solid #D6C8EE; border-top: 4px solid #6B4E9E; border-radius: 10px; padding: 14px 16px; text-align: center; }
+    .mi-job-icon { font-size: 26px; line-height: 1; margin-bottom: 8px; }
+    .mi-job-name { font-size: 16px; color: #0E1C42; margin-bottom: 4px; }
+    .mi-job-text { font-size: 15px; color: #5A3E8C; line-height: 1.5; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">MUSIC INTERMEDIATE III</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q4 &middot; Module 37</div>
+        <div style="font-size: 12px; color: #666;">Final Review Project</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Project Guide</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Your Year in Music</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">About how long</div>
+        <div style="font-size: 16px; color: #0e1c42;">about 50 min</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+<!-- ═══ OPTIMA READ-ALOUD PLAYER ═══ -->
+<div id="optima-read-aloud">
+<style>
+    #optima-read-aloud { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 14px 18px; margin: 0 0 20px 0; }
+    #optima-read-aloud .ora-kicker { font-size: 11px; color: #1B6A94; letter-spacing: 0.4px; margin-bottom: 10px; }
+    #optima-read-aloud .ora-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+    #optima-read-aloud .ora-controls button { border-radius: 8px; padding: 8px 16px; font-size: 14px; cursor: pointer; font-family: inherit; transition: all 0.15s; }
+    #ora-play { background: #0E1C42; color: #FFFFFF; border: 1.5px solid #0E1C42; }
+    #ora-play:hover:enabled { background: #1B2D5E; }
+    #ora-play:disabled { background: #D0D9E8; border-color: #D0D9E8; color: #6b7a99; cursor: default; }
+    #ora-stop { background: #FFFFFF; color: #0E1C42; border: 1.5px solid #D0D9E8; }
+    #ora-stop:hover:enabled { background: #F4F6FA; border-color: #55C8E8; }
+    #ora-stop:disabled { color: #999; border-color: #E4E9F2; cursor: default; }
+    #optima-read-aloud .ora-speed { font-size: 12px; color: #6b7a99; display: flex; align-items: center; gap: 6px; }
+    #ora-rate { font-family: inherit; font-size: 13px; color: #0E1C42; border: 1.5px solid #D0D9E8; border-radius: 6px; padding: 5px 8px; background: #FFFFFF; }
+    #ora-status { font-size: 12px; color: #666; }
+    .ora-highlight { background: #FDF3E3 !important; box-shadow: inset 4px 0 0 #C7922C; border-radius: 4px; transition: background 0.2s; }
+</style>
+    <div class="ora-kicker">&#128266; READ ALOUD &mdash; LISTEN TO THIS PAGE</div>
+    <div class="ora-controls">
+        <button id="ora-play" type="button" aria-label="Listen to this page">&#9654;&#65039; Listen</button>
+        <button id="ora-stop" type="button" aria-label="Stop reading" disabled>&#9632; Stop</button>
+        <label class="ora-speed">Speed
+            <select id="ora-rate" aria-label="Reading speed">
+                <option value="0.8">Slower</option>
+                <option value="1" selected>Normal</option>
+                <option value="1.25">Faster</option>
+            </select>
+        </label>
+        <span id="ora-status" role="status" aria-live="polite"></span>
+    </div>
+<script>
+(function () {
+    "use strict";
+    var playBtn  = document.getElementById("ora-play");
+    var stopBtn  = document.getElementById("ora-stop");
+    var rateSel  = document.getElementById("ora-rate");
+    var statusEl = document.getElementById("ora-status");
+
+    if (!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)) {
+        playBtn.disabled = true;
+        rateSel.disabled = true;
+        statusEl.textContent = "Read-aloud is not supported in this browser.";
+        return;
+    }
+
+    var LABEL_PLAY   = "▶️ Listen";
+    var LABEL_PAUSE  = "⏸️ Pause";
+    var LABEL_RESUME = "▶️ Resume";
+    var BLOCK_SEL = "p, li, h1, h2, h3, h4, h5, h6, blockquote, td, th, dt, dd, figcaption, div";
+    var SKIP_SEL  = "#optima-read-aloud, [data-ra-skip], button, script, style, select, noscript, iframe";
+
+    var queue = [];        // [{ el, text }] — one entry per sentence
+    var idx = 0;
+    var playing = false, paused = false, stopping = false;
+    var currentBlock = null;
+    var currentUtterance = null;  // held to dodge a Chrome garbage-collection bug
+
+    var voices = [];
+    function loadVoices() { voices = window.speechSynthesis.getVoices(); }
+    loadVoices();
+    if ("onvoiceschanged" in window.speechSynthesis) {
+        window.speechSynthesis.onvoiceschanged = loadVoices;
+    }
+    function pickVoice() {
+        if (!voices.length) loadVoices();
+        var en = voices.filter(function (v) { return /^en/i.test(v.lang); });
+        return en.filter(function (v) { return /natural/i.test(v.name); })[0]
+            || en.filter(function (v) { return /google us english/i.test(v.name); })[0]
+            || en.filter(function (v) { return v.default; })[0]
+            || en[0] || null;
+    }
+
+    function isVisible(el) {
+        return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length);
+    }
+
+    // Walk text nodes, attach each to its nearest block ancestor, split into sentences.
+    function collectQueue() {
+        var root = document.querySelector("[data-readaloud-root]")
+                || document.querySelector(".canvas-frame")
+                || document.body;
+        var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+        var items = [];   // [{ el, text }] — one entry per block, in reading order
+        var node;
+        while ((node = walker.nextNode())) {
+            if (!/\S/.test(node.textContent)) continue;
+            var el = node.parentElement;
+            if (!el || el.closest(SKIP_SEL)) continue;
+            if (!isVisible(el)) continue;
+            var block = el.closest(BLOCK_SEL) || root;
+            var last = items[items.length - 1];
+            if (last && last.el === block) last.text += " " + node.textContent;
+            else items.push({ el: block, text: node.textContent });
+        }
+        var q = [];
+        items.forEach(function (item) {
+            var clean = item.text.replace(/\s+/g, " ").trim();
+            if (!clean) return;
+            var sentences = clean.match(/[^.!?]+[.!?]+[”"')\]]*\s*|[^.!?]+$/g) || [clean];
+            sentences.forEach(function (s) {
+                s = s.trim();
+                if (s) q.push({ el: item.el, text: s });
+            });
+        });
+        return q;
+    }
+
+    function highlight(el) {
+        if (el === currentBlock) return;
+        clearHighlight();
+        currentBlock = el;
+        if (el && el !== document.body) {
+            el.classList.add("ora-highlight");
+            try { el.scrollIntoView({ behavior: "smooth", block: "nearest" }); } catch (e) {}
+        }
+    }
+    function clearHighlight() {
+        if (currentBlock) currentBlock.classList.remove("ora-highlight");
+        currentBlock = null;
+    }
+
+    function speakNext() {
+        if (idx >= queue.length) { finish("Finished reading this page."); return; }
+        var item = queue[idx];
+        highlight(item.el);
+        var u = new SpeechSynthesisUtterance(item.text);
+        u.rate = parseFloat(rateSel.value) || 1;
+        var v = pickVoice();
+        if (v) u.voice = v;
+        u.onend = function () {
+            if (stopping) return;
+            idx++;
+            speakNext();
+        };
+        u.onerror = function (e) {
+            if (stopping || e.error === "canceled" || e.error === "interrupted") return;
+            idx++;
+            speakNext();
+        };
+        currentUtterance = u;
+        window.speechSynthesis.speak(u);
+        statusEl.textContent = "Reading… " + (idx + 1) + " / " + queue.length;
+    }
+
+    function finish(message) {
+        playing = false;
+        paused = false;
+        clearHighlight();
+        playBtn.textContent = LABEL_PLAY;
+        stopBtn.disabled = true;
+        statusEl.textContent = message || "";
+        currentUtterance = null;
+    }
+
+    playBtn.addEventListener("click", function () {
+        if (playing && !paused) {
+            window.speechSynthesis.pause();
+            paused = true;
+            playBtn.textContent = LABEL_RESUME;
+            statusEl.textContent = "Paused";
+            return;
+        }
+        if (playing && paused) {
+            window.speechSynthesis.resume();
+            paused = false;
+            playBtn.textContent = LABEL_PAUSE;
+            statusEl.textContent = "Reading… " + (idx + 1) + " / " + queue.length;
+            return;
+        }
+        queue = collectQueue();
+        if (!queue.length) { statusEl.textContent = "Nothing to read on this page."; return; }
+        idx = 0;
+        stopping = false;
+        playing = true;
+        paused = false;
+        window.speechSynthesis.cancel();
+        playBtn.textContent = LABEL_PAUSE;
+        stopBtn.disabled = false;
+        speakNext();
+    });
+
+    stopBtn.addEventListener("click", function () {
+        stopping = true;
+        window.speechSynthesis.cancel();
+        finish("");
+    });
+
+    // Changing speed mid-read restarts the current sentence at the new rate.
+    rateSel.addEventListener("change", function () {
+        if (!playing || paused) return;
+        stopping = true;
+        window.speechSynthesis.cancel();
+        setTimeout(function () { stopping = false; speakNext(); }, 60);
+    });
+
+    window.addEventListener("pagehide", function () { window.speechSynthesis.cancel(); });
+})();
+</script>
+</div>
+<!-- ═══ END OPTIMA READ-ALOUD PLAYER ═══ -->
+
+    <!-- Title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #0e1c42; margin-bottom: 6px;">Project Guide</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">The Final Music Review Project</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 12px;">&#127881; YOUR BIG FINISH</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">How do you show everything you learned this year?</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.7;">This is the last module of Music Intermediate III. Your <strong>Final Music Review Project</strong> has nine short sub-pages, one for each big area you studied this year. You will gather what you know, show it in your own words, and reflect on how far you have come. This lesson is your guide. The project itself is the next step.</div>
+    </div>
+
+    <!-- VISUAL: 9 sub-page roadmap (lead) -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 14px;">&#128205; YOUR NINE SUB-PAGES</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.7; margin: 0 0 6px 0;">Here is the whole project at a glance. Each card is one sub-page you will complete.</p>
+        <div class="mi-road">
+            <div class="mi-road-card" style="border-top: 4px solid #2E9E6B;"><span class="mi-road-num">37.1</span><div class="mi-road-name"><strong>String Instruments</strong></div></div>
+            <div class="mi-road-card" style="border-top: 4px solid #6B4E9E;"><span class="mi-road-num">37.2</span><div class="mi-road-name"><strong>Woodwind Instruments</strong></div></div>
+            <div class="mi-road-card" style="border-top: 4px solid #2E9E6B;"><span class="mi-road-num">37.3</span><div class="mi-road-name"><strong>Brass Instruments</strong></div></div>
+            <div class="mi-road-card" style="border-top: 4px solid #6B4E9E;"><span class="mi-road-num">37.4</span><div class="mi-road-name"><strong>Percussion Instruments</strong></div></div>
+            <div class="mi-road-card" style="border-top: 4px solid #2E9E6B;"><span class="mi-road-num">37.5</span><div class="mi-road-name"><strong>Notation &amp; Accidentals</strong></div></div>
+            <div class="mi-road-card" style="border-top: 4px solid #6B4E9E;"><span class="mi-road-num">37.6</span><div class="mi-road-name"><strong>Rhythm &amp; Note Values</strong></div></div>
+            <div class="mi-road-card" style="border-top: 4px solid #2E9E6B;"><span class="mi-road-num">37.7</span><div class="mi-road-name"><strong>Treble Clef Reading</strong></div></div>
+            <div class="mi-road-card" style="border-top: 4px solid #6B4E9E;"><span class="mi-road-num">37.8</span><div class="mi-road-name"><strong>Music History &amp; Composers</strong></div></div>
+            <div class="mi-road-card" style="border-top: 4px solid #C7922C;"><span class="mi-road-num">37.9</span><div class="mi-road-name"><strong>Personal Reflection</strong></div></div>
+        </div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS PROJECT YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;"><strong>I can</strong> show what I learned about instruments, reading, rhythm, and composers.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;"><strong>I can</strong> use music vocabulary correctly in my own words.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;"><strong>I can</strong> reflect on how I grew as a musician this year.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">4</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;"><strong>I can</strong> describe jobs connected to concert venues and explain why live performances matter.</div>
+        </div>
+    </div>
+
+    <!-- Music as a career -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 14px;">&#127917; MUSIC AS A CAREER</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.7; margin: 0 0 6px 0;">Before you review the year, take a step back. A live concert or show needs far more than the people you see on stage. Here are just a few of the jobs that make a live performance possible.</p>
+
+        <!-- VISUAL: concert venue jobs -->
+        <div class="mi-job-row">
+            <div class="mi-job"><div class="mi-job-icon">&#127908;</div><div class="mi-job-name"><strong>Performer</strong></div><div class="mi-job-text">Plays or sings the music</div></div>
+            <div class="mi-job"><div class="mi-job-icon">&#127932;</div><div class="mi-job-name"><strong>Conductor</strong></div><div class="mi-job-text">Leads the group and keeps everyone together</div></div>
+            <div class="mi-job"><div class="mi-job-icon">&#127911;</div><div class="mi-job-name"><strong>Sound Engineer</strong></div><div class="mi-job-text">Makes sure the audience can hear clearly</div></div>
+            <div class="mi-job"><div class="mi-job-icon">&#128736;&#65039;</div><div class="mi-job-name"><strong>Stage Crew</strong></div><div class="mi-job-text">Sets up equipment and keeps the show running</div></div>
+            <div class="mi-job"><div class="mi-job-icon">&#127915;</div><div class="mi-job-name"><strong>Venue &amp; Box Office Staff</strong></div><div class="mi-job-text">Runs the building and sells tickets</div></div>
+        </div>
+
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.7; margin: 10px 0 0 0;">Live performances matter for more than one reason. For the <strong>artist</strong>, a live show builds an audience, earns income, and lets them connect with fans in a way a recording cannot. For the <strong>venue</strong>, ticket sales support the building, the staff, and future shows. And for the <strong>audience</strong>, being in the room for a performance that only happens once is an experience a recording can never fully replace.</p>
+
+        <div class="optima-widget ow-reflect" style="margin-top: 16px;">
+            <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+            <div class="widget-question">Which concert-venue job sounds most interesting to you? (There is no wrong answer.)</div>
+            <div class="widget-options">
+                <button data-response="Performers are the ones the audience came to see and hear. It takes years of practice to be ready for that moment.">&#127908; Performer</button>
+                <button data-response="Conductors need to know the music inside and out to lead a whole group at once.">&#127932; Conductor</button>
+                <button data-response="Sound engineers use both musical ears and technical skill to make sure every seat in the room hears the show clearly.">&#127911; Sound Engineer</button>
+                <button data-response="Stage crew and venue staff make the whole night possible, even though the audience rarely sees them.">&#128736;&#65039; Stage Crew or Venue Staff</button>
+            </div>
+            <div class="widget-feedback"></div>
+            <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <!-- How to use your journal -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 14px;">&#128221; START WITH YOUR MUSIC JOURNAL</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.7; margin: 0 0 6px 0;">You have been adding a Weekly Entry to your <strong>Music Journal organizer</strong> all year. It is your best friend for this project. Open it and look back: your notes on instruments, your new words, the composers you met, and the questions you asked. Much of what you need for the nine sub-pages is already there in your own words.</p>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.7; margin: 8px 0 0 0;">Watch this short review of the string family to warm up your memory, then begin gathering your notes.</p>
+        <div class="mi-video">
+            <iframe src="https://www.youtube-nocookie.com/embed/UqfUm7kyj7s" title="The Strings" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p style="margin: 4px 0 2px 0;"><a href="https://www.youtube.com/watch?v=UqfUm7kyj7s" target="_blank" rel="noopener" style="font-size: 16px; color: #6B4E9E; text-decoration: none; border: 1px solid #6B4E9E; border-radius: 6px; padding: 5px 12px; display: inline-block;">&#9654; Watch on YouTube (opens in a new tab)</a></p>
+        <p class="mi-video-credit">Video hosted on YouTube. It belongs to its creator and is shared here for learning.</p>
+    </div>
+
+    <!-- PART: readiness widgets -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 14px;">&#9889; WARM UP YOUR MEMORY</div>
+
+        <div class="optima-widget ow-reflect">
+            <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+            <div class="widget-question">Looking back at the whole year, which part did you enjoy the most? (There is no wrong answer.)</div>
+            <div class="widget-options">
+                <button data-response="Great choice. Let that favorite part shine in your project and your reflection.">&#127931; The instruments</button>
+                <button data-response="Wonderful. Your reading and rhythm skills grew a lot this year. Show them off.">&#127925; Reading and rhythm</button>
+                <button data-response="Excellent. The composers and their stories are a rich part of music history. Feature them.">&#127926; The composers and history</button>
+            </div>
+            <div class="widget-feedback"></div>
+            <button class="widget-reset">Reset</button>
+        </div>
+
+        <div class="optima-widget ow-select">
+            <div class="widget-kicker">&#9889; TRY IT &middot; YEAR IN REVIEW</div>
+            <div class="widget-question">Pick the best answer for each one. These are the kinds of facts your project will use.</div>
+
+            <div class="widget-row" data-correct="3" data-fb="Yes. Violin, viola, cello, and double bass are the string family." data-hint="Think about the four instruments played with a bow.">
+                <div class="widget-row-prompt">1. Which group lists the string instruments?</div>
+                <div class="widget-options">
+                    <button data-choice="0">Trumpet, trombone, tuba</button>
+                    <button data-choice="1">Flute, oboe, clarinet</button>
+                    <button data-choice="2">Snare drum, cymbals, timpani</button>
+                    <button data-choice="3">Violin, viola, cello, double bass</button>
+                </div>
+            </div>
+
+            <div class="widget-row" data-correct="1" data-fb="Right. A sharp raises a note by one half step." data-hint="Think about what the sharp symbol does to a note.">
+                <div class="widget-row-prompt">2. A sharp does what to a note?</div>
+                <div class="widget-options">
+                    <button data-choice="0">Lowers it one half step</button>
+                    <button data-choice="1">Raises it one half step</button>
+                    <button data-choice="2">Makes it louder</button>
+                    <button data-choice="3">Makes it faster</button>
+                </div>
+            </div>
+
+            <div class="widget-row" data-correct="2" data-fb="Correct. A whole note lasts four beats." data-hint="It is the open notehead with no stem.">
+                <div class="widget-row-prompt">3. How many beats does a whole note last?</div>
+                <div class="widget-options">
+                    <button data-choice="0">1 beat</button>
+                    <button data-choice="1">2 beats</button>
+                    <button data-choice="2">4 beats</button>
+                    <button data-choice="3">half a beat</button>
+                </div>
+            </div>
+
+            <div class="widget-row" data-correct="0" data-fb="Yes. Beethoven composed Symphony No. 5 and Symphony No. 9." data-hint="He kept composing even as he lost his hearing.">
+                <div class="widget-row-prompt">4. Which composer wrote Symphony No. 5 and Symphony No. 9?</div>
+                <div class="widget-options">
+                    <button data-choice="0">Beethoven</button>
+                    <button data-choice="1">Louis Armstrong</button>
+                    <button data-choice="2">Dave Brubeck</button>
+                    <button data-choice="3">Elvis Presley</button>
+                </div>
+            </div>
+
+            <div class="widget-row" data-correct="2" data-fb="Correct. Ticket sales support the venue and its staff, and a live show gives the audience a one-time experience a recording cannot fully replace." data-hint="Think about the Music as a Career section above.">
+                <div class="widget-row-prompt">5. Which sentence best explains why live performances matter?</div>
+                <div class="widget-options">
+                    <button data-choice="0">They only matter to the performer</button>
+                    <button data-choice="1">Recordings always sound the same as being there live</button>
+                    <button data-choice="2">Ticket sales support the venue, and being in the room is an experience a recording cannot fully replace</button>
+                    <button data-choice="3">Live shows do not need any staff besides the performer</button>
+                </div>
+            </div>
+
+            <button class="widget-reset">Reset</button>
+        </div>
+
+        <!-- Need Help (green) -->
+        <div style="background: #E6F6EE; border-left: 5px solid #2E9E6B; border-top: 3px solid #57C98E; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 15px; color: #1B6B47; margin-bottom: 8px;">&#129303; NEED HELP?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">A nine-part project can feel big. Do one sub-page at a time, and start with the one you feel best about. Use your Music Journal to refresh your memory. If you get stuck, message your teacher in your Canvas Inbox.</div>
+        </div>
+
+        <!-- Go Further (purple) -->
+        <details style="background: #FFFFFF; border: 1px solid #D6C8EE; border-left: 4px solid #6B4E9E; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 17px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #6B4E9E;">&#9654;</span>&nbsp; Go Further: make your project shine
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.7; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EFE8F8;">
+                Add a short recording where it fits (sing a scale, clap a rhythm, or read a few notes), include a clear example on each sub-page, and use real music vocabulary. Specific examples and your own voice are what make a project excellent.
+            </div>
+        </details>
+    </div>
+
+    <!-- Music Journal tie-in -->
+    <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-radius: 6px; padding: 16px 22px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 10px;">&#128221; ADD A WEEKLY ENTRY TO YOUR MUSIC JOURNAL</div>
+        <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">Open your <strong>Music Journal organizer</strong> and add your final Weekly Entry of the year. For <em>What I learned</em>, list the four instrument families and one concert-venue job that interested you. For your reflection line, name one thing you are proud of learning this year. You will use this in sub-page 37.9.</div>
+    </div>
+
+    <!-- What you'll do next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div><div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Final Music Review Project</strong></div><div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Complete all nine sub-pages and submit. Your teacher will grade it with the project rubric.</div></div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div><div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Year-End Reflection</strong></div><div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A few questions to celebrate your year and look ahead.</div></div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 12px;">&#127911; YOU MADE IT</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.7; margin: 0;">This is the finish line of three years in the Music Intermediate sequence. You can name the instrument families, read the treble clef, keep a beat, and talk about great composers. Show all of it in your project, and be proud of how far you have come.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; MUSIC INTERMEDIATE III &middot; Quarter 4 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Module 37 &middot; Final Music Review Project Guide</div>
+    <div style="font-size: 11px; color: rgba(255,255,255,0.45); line-height: 1.5;">This lesson links to a third-party video used for educational purposes. It remains the property of its creator. Please do not download or redistribute it.</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

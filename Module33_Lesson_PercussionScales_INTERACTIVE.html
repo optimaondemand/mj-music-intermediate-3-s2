@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Music Intermediate III: Percussion and Major Scales</title>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS — MUSIC in-lesson palette: green + purple ===== */
+    .optima-widget { background: linear-gradient(135deg, #F1ECF9 0%, #E6F6EE 100%); border: 1px solid #D6C8EE; border-left: 5px solid #6B4E9E; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 15px; color: #5A3E8C; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 18px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D6C8EE; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 16px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D6C8EE; border-radius: 8px; padding: 9px 16px; font-size: 16px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F1ECF9; border-color: #6B4E9E; }
+    .widget-options button.selected { background: #6B4E9E; color: #FFFFFF; border-color: #6B4E9E; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #2E9E6B; padding: 10px 14px; font-size: 16px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 16px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #6B4E9E; color: #6B4E9E; border-radius: 6px; padding: 6px 12px; font-size: 15px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #F1ECF9; }
+
+    /* ===== Video embed (responsive 16:9) ===== */
+    .mi-video { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; margin: 12px 0 4px 0; border: 2px solid #6B4E9E; }
+    .mi-video iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+    .mi-video-credit { font-size: 15px; color: #888; font-style: italic; margin: 0 0 14px 2px; }
+
+    /* ===== Roots of Rock and Roll visual ===== */
+    .mi-roots { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px; margin: 16px 0; }
+    .mi-root { background: #FFFFFF; border: 1px solid #D6C8EE; border-top: 4px solid #2E9E6B; border-radius: 10px; padding: 12px 16px; text-align: center; min-width: 110px; }
+    .mi-root-name { font-size: 16px; color: #0E1C42; }
+    .mi-root-sub { font-size: 15px; color: #5A3E8C; margin-top: 2px; }
+    .mi-arrow { font-size: 24px; color: #6B4E9E; }
+    .mi-rocknroll { background: #6B4E9E; color: #FFFFFF; border-radius: 10px; padding: 14px 20px; text-align: center; min-width: 150px; }
+    .mi-rocknroll-name { font-size: 18px; }
+
+    /* ===== Fact card ===== */
+    .mi-fact { background: #F1ECF9; border: 1px solid #D6C8EE; border-left: 5px solid #6B4E9E; border-radius: 8px; padding: 16px 20px; margin: 14px 0; }
+    .mi-fact-line { font-size: 16px; color: #0E1C42; line-height: 1.8; }
+    .mi-fact-label { color: #5A3E8C; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">MUSIC INTERMEDIATE III</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q4 &middot; Module 33</div>
+        <div style="font-size: 12px; color: #666;">Percussion</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Percussion and Major Scales</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Pitched and unpitched percussion</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">About how long</div>
+        <div style="font-size: 16px; color: #0e1c42;">about 40 min</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+<!-- ═══ OPTIMA READ-ALOUD PLAYER ═══ -->
+<div id="optima-read-aloud">
+<style>
+    #optima-read-aloud { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 14px 18px; margin: 0 0 20px 0; }
+    #optima-read-aloud .ora-kicker { font-size: 11px; color: #1B6A94; letter-spacing: 0.4px; margin-bottom: 10px; }
+    #optima-read-aloud .ora-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+    #optima-read-aloud .ora-controls button { border-radius: 8px; padding: 8px 16px; font-size: 14px; cursor: pointer; font-family: inherit; transition: all 0.15s; }
+    #ora-play { background: #0E1C42; color: #FFFFFF; border: 1.5px solid #0E1C42; }
+    #ora-play:hover:enabled { background: #1B2D5E; }
+    #ora-play:disabled { background: #D0D9E8; border-color: #D0D9E8; color: #6b7a99; cursor: default; }
+    #ora-stop { background: #FFFFFF; color: #0E1C42; border: 1.5px solid #D0D9E8; }
+    #ora-stop:hover:enabled { background: #F4F6FA; border-color: #55C8E8; }
+    #ora-stop:disabled { color: #999; border-color: #E4E9F2; cursor: default; }
+    #optima-read-aloud .ora-speed { font-size: 12px; color: #6b7a99; display: flex; align-items: center; gap: 6px; }
+    #ora-rate { font-family: inherit; font-size: 13px; color: #0E1C42; border: 1.5px solid #D0D9E8; border-radius: 6px; padding: 5px 8px; background: #FFFFFF; }
+    #ora-status { font-size: 12px; color: #666; }
+    .ora-highlight { background: #FDF3E3 !important; box-shadow: inset 4px 0 0 #C7922C; border-radius: 4px; transition: background 0.2s; }
+</style>
+    <div class="ora-kicker">&#128266; READ ALOUD &mdash; LISTEN TO THIS PAGE</div>
+    <div class="ora-controls">
+        <button id="ora-play" type="button" aria-label="Listen to this page">&#9654;&#65039; Listen</button>
+        <button id="ora-stop" type="button" aria-label="Stop reading" disabled>&#9632; Stop</button>
+        <label class="ora-speed">Speed
+            <select id="ora-rate" aria-label="Reading speed">
+                <option value="0.8">Slower</option>
+                <option value="1" selected>Normal</option>
+                <option value="1.25">Faster</option>
+            </select>
+        </label>
+        <span id="ora-status" role="status" aria-live="polite"></span>
+    </div>
+<script>
+(function () {
+    "use strict";
+    var playBtn  = document.getElementById("ora-play");
+    var stopBtn  = document.getElementById("ora-stop");
+    var rateSel  = document.getElementById("ora-rate");
+    var statusEl = document.getElementById("ora-status");
+
+    if (!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)) {
+        playBtn.disabled = true;
+        rateSel.disabled = true;
+        statusEl.textContent = "Read-aloud is not supported in this browser.";
+        return;
+    }
+
+    var LABEL_PLAY   = "▶️ Listen";
+    var LABEL_PAUSE  = "⏸️ Pause";
+    var LABEL_RESUME = "▶️ Resume";
+    var BLOCK_SEL = "p, li, h1, h2, h3, h4, h5, h6, blockquote, td, th, dt, dd, figcaption, div";
+    var SKIP_SEL  = "#optima-read-aloud, [data-ra-skip], button, script, style, select, noscript, iframe";
+
+    var queue = [];        // [{ el, text }] — one entry per sentence
+    var idx = 0;
+    var playing = false, paused = false, stopping = false;
+    var currentBlock = null;
+    var currentUtterance = null;  // held to dodge a Chrome garbage-collection bug
+
+    var voices = [];
+    function loadVoices() { voices = window.speechSynthesis.getVoices(); }
+    loadVoices();
+    if ("onvoiceschanged" in window.speechSynthesis) {
+        window.speechSynthesis.onvoiceschanged = loadVoices;
+    }
+    function pickVoice() {
+        if (!voices.length) loadVoices();
+        var en = voices.filter(function (v) { return /^en/i.test(v.lang); });
+        return en.filter(function (v) { return /natural/i.test(v.name); })[0]
+            || en.filter(function (v) { return /google us english/i.test(v.name); })[0]
+            || en.filter(function (v) { return v.default; })[0]
+            || en[0] || null;
+    }
+
+    function isVisible(el) {
+        return !!(el.offsetWidth || el.offsetHeight || el.getClientRects().length);
+    }
+
+    // Walk text nodes, attach each to its nearest block ancestor, split into sentences.
+    function collectQueue() {
+        var root = document.querySelector("[data-readaloud-root]")
+                || document.querySelector(".canvas-frame")
+                || document.body;
+        var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+        var items = [];   // [{ el, text }] — one entry per block, in reading order
+        var node;
+        while ((node = walker.nextNode())) {
+            if (!/\S/.test(node.textContent)) continue;
+            var el = node.parentElement;
+            if (!el || el.closest(SKIP_SEL)) continue;
+            if (!isVisible(el)) continue;
+            var block = el.closest(BLOCK_SEL) || root;
+            var last = items[items.length - 1];
+            if (last && last.el === block) last.text += " " + node.textContent;
+            else items.push({ el: block, text: node.textContent });
+        }
+        var q = [];
+        items.forEach(function (item) {
+            var clean = item.text.replace(/\s+/g, " ").trim();
+            if (!clean) return;
+            var sentences = clean.match(/[^.!?]+[.!?]+[”"')\]]*\s*|[^.!?]+$/g) || [clean];
+            sentences.forEach(function (s) {
+                s = s.trim();
+                if (s) q.push({ el: item.el, text: s });
+            });
+        });
+        return q;
+    }
+
+    function highlight(el) {
+        if (el === currentBlock) return;
+        clearHighlight();
+        currentBlock = el;
+        if (el && el !== document.body) {
+            el.classList.add("ora-highlight");
+            try { el.scrollIntoView({ behavior: "smooth", block: "nearest" }); } catch (e) {}
+        }
+    }
+    function clearHighlight() {
+        if (currentBlock) currentBlock.classList.remove("ora-highlight");
+        currentBlock = null;
+    }
+
+    function speakNext() {
+        if (idx >= queue.length) { finish("Finished reading this page."); return; }
+        var item = queue[idx];
+        highlight(item.el);
+        var u = new SpeechSynthesisUtterance(item.text);
+        u.rate = parseFloat(rateSel.value) || 1;
+        var v = pickVoice();
+        if (v) u.voice = v;
+        u.onend = function () {
+            if (stopping) return;
+            idx++;
+            speakNext();
+        };
+        u.onerror = function (e) {
+            if (stopping || e.error === "canceled" || e.error === "interrupted") return;
+            idx++;
+            speakNext();
+        };
+        currentUtterance = u;
+        window.speechSynthesis.speak(u);
+        statusEl.textContent = "Reading… " + (idx + 1) + " / " + queue.length;
+    }
+
+    function finish(message) {
+        playing = false;
+        paused = false;
+        clearHighlight();
+        playBtn.textContent = LABEL_PLAY;
+        stopBtn.disabled = true;
+        statusEl.textContent = message || "";
+        currentUtterance = null;
+    }
+
+    playBtn.addEventListener("click", function () {
+        if (playing && !paused) {
+            window.speechSynthesis.pause();
+            paused = true;
+            playBtn.textContent = LABEL_RESUME;
+            statusEl.textContent = "Paused";
+            return;
+        }
+        if (playing && paused) {
+            window.speechSynthesis.resume();
+            paused = false;
+            playBtn.textContent = LABEL_PAUSE;
+            statusEl.textContent = "Reading… " + (idx + 1) + " / " + queue.length;
+            return;
+        }
+        queue = collectQueue();
+        if (!queue.length) { statusEl.textContent = "Nothing to read on this page."; return; }
+        idx = 0;
+        stopping = false;
+        playing = true;
+        paused = false;
+        window.speechSynthesis.cancel();
+        playBtn.textContent = LABEL_PAUSE;
+        stopBtn.disabled = false;
+        speakNext();
+    });
+
+    stopBtn.addEventListener("click", function () {
+        stopping = true;
+        window.speechSynthesis.cancel();
+        finish("");
+    });
+
+    // Changing speed mid-read restarts the current sentence at the new rate.
+    rateSel.addEventListener("change", function () {
+        if (!playing || paused) return;
+        stopping = true;
+        window.speechSynthesis.cancel();
+        setTimeout(function () { stopping = false; speakNext(); }, 60);
+    });
+
+    window.addEventListener("pagehide", function () { window.speechSynthesis.cancel(); });
+})();
+</script>
+</div>
+<!-- ═══ END OPTIMA READ-ALOUD PLAYER ═══ -->
+
+    <!-- Title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #0e1c42; margin-bottom: 6px;">Percussion</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Percussion and Major Scales</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- CORE VISUAL FIRST: pitched vs unpitched two-column card + major scale step strip -->
+    <div style="background: #FFFFFF; border-top: 3px solid #6B4E9E; border: 1px solid #D6C8EE; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #5A3E8C; margin-bottom: 6px;">&#127925; LOOK FIRST</div>
+        <div style="font-size: 20px; color: #0e1c42; margin-bottom: 4px;">Two kinds of percussion</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 14px 0;">Percussion instruments make sound when you strike or shake them. Some play exact notes and some do not. Look at the two columns before you read on.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+            <div style="flex: 1; min-width: 230px; background: #E6F6EE; border: 1px solid #B7E3CB; border-top: 5px solid #2E9E6B; border-radius: 10px; padding: 16px 18px;">
+                <div style="font-size: 26px;">&#127929;</div>
+                <div style="font-size: 18px; color: #0E1C42;"><strong>Pitched percussion</strong></div>
+                <div style="font-size: 16px; color: #1B6B47; margin-bottom: 10px;">plays specific notes</div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.8;">Xylophone<br />Timpani</div>
+            </div>
+            <div style="flex: 1; min-width: 230px; background: #F1ECF9; border: 1px solid #D6C8EE; border-top: 5px solid #6B4E9E; border-radius: 10px; padding: 16px 18px;">
+                <div style="font-size: 26px;">&#129345;</div>
+                <div style="font-size: 18px; color: #0E1C42;"><strong>Unpitched percussion</strong></div>
+                <div style="font-size: 16px; color: #5A3E8C; margin-bottom: 10px;">no definite pitch</div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.8;">Snare drum<br />Cymbals</div>
+            </div>
+        </div>
+
+        <!-- Major scale step pattern strip -->
+        <div style="font-size: 15px; color: #5A3E8C; margin: 22px 0 6px 0;">&#127932; THE MAJOR SCALE STEP PATTERN</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 12px 0;">A major scale always climbs in the same order of whole steps (W) and half steps (H). Read the strip left to right, the way you climb the notes from C to C.</p>
+        <div style="background: #FFFFFF; border: 1px solid #D6C8EE; border-radius: 10px; padding: 16px; overflow-x: auto;">
+            <div style="display: flex; align-items: center; gap: 6px; min-width: 560px; justify-content: center;">
+                <div style="text-align: center;"><div style="font-size: 24px; color: #0E1C42;"><strong>C</strong></div></div>
+                <div style="background: #2E9E6B; color: #fff; border-radius: 6px; padding: 6px 12px; font-size: 16px;">W</div>
+                <div style="text-align: center;"><div style="font-size: 24px; color: #0E1C42;"><strong>D</strong></div></div>
+                <div style="background: #2E9E6B; color: #fff; border-radius: 6px; padding: 6px 12px; font-size: 16px;">W</div>
+                <div style="text-align: center;"><div style="font-size: 24px; color: #0E1C42;"><strong>E</strong></div></div>
+                <div style="background: #6B4E9E; color: #fff; border-radius: 6px; padding: 6px 12px; font-size: 16px;">H</div>
+                <div style="text-align: center;"><div style="font-size: 24px; color: #0E1C42;"><strong>F</strong></div></div>
+                <div style="background: #2E9E6B; color: #fff; border-radius: 6px; padding: 6px 12px; font-size: 16px;">W</div>
+                <div style="text-align: center;"><div style="font-size: 24px; color: #0E1C42;"><strong>G</strong></div></div>
+                <div style="background: #2E9E6B; color: #fff; border-radius: 6px; padding: 6px 12px; font-size: 16px;">W</div>
+                <div style="text-align: center;"><div style="font-size: 24px; color: #0E1C42;"><strong>A</strong></div></div>
+                <div style="background: #2E9E6B; color: #fff; border-radius: 6px; padding: 6px 12px; font-size: 16px;">W</div>
+                <div style="text-align: center;"><div style="font-size: 24px; color: #0E1C42;"><strong>B</strong></div></div>
+                <div style="background: #6B4E9E; color: #fff; border-radius: 6px; padding: 6px 12px; font-size: 16px;">H</div>
+                <div style="text-align: center;"><div style="font-size: 24px; color: #0E1C42;"><strong>C</strong></div></div>
+            </div>
+            <div style="text-align: center; font-size: 16px; color: #5A3E8C; margin-top: 12px;">W &middot; W &middot; H &middot; W &middot; W &middot; W &middot; H</div>
+        </div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">What is the difference between pitched and unpitched percussion, and what pattern builds a major scale?</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.7;">The <strong>percussion family</strong> makes sound when you strike or shake an instrument. This week you sort percussion into <strong>pitched</strong> and <strong>unpitched</strong>, and you review the step pattern that builds every <strong>major scale</strong>.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;"><strong>I can</strong> tell pitched percussion from unpitched percussion.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;"><strong>I can</strong> name examples of pitched and unpitched percussion.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;"><strong>I can</strong> explain the major-scale step pattern.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span><div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Headphones or speakers</div></div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span><div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your Music Journal organizer</div></div>
+    </div>
+
+    <!-- PART 1: check-in -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 14px;">&#9889; PART 1 &middot; LET'S BEGIN</div>
+        <div class="optima-widget ow-reflect">
+            <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+            <div class="widget-question">When you think of a percussion instrument, which one comes to mind first? (There is no wrong answer.)</div>
+            <div class="widget-options">
+                <button data-response="Great. A drum is a classic unpitched instrument. You will hear why it has no exact note this week.">&#129345; A drum</button>
+                <button data-response="Nice. The xylophone is pitched, which means each bar plays an exact note. Listen for that this week.">&#127929; A xylophone</button>
+                <button data-response="That is okay. By the end of this lesson you will be able to name pitched and unpitched percussion with ease.">&#129300; Not sure yet</button>
+            </div>
+            <div class="widget-feedback"></div>
+            <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <!-- PART 2: percussion family + pitched vs unpitched + video -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 14px;">&#127925; PART 2 &middot; THE PERCUSSION FAMILY</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.7; margin: 0 0 12px 0;">Percussion instruments make sound when you strike or shake them. Inside the family there are two groups. <strong>Pitched percussion</strong> plays specific notes you can name, like the xylophone and the timpani. <strong>Unpitched percussion</strong> makes a sound without a definite pitch, like the snare drum and the cymbals.</p>
+
+        <!-- VISUAL: pitched vs unpitched fact cards -->
+        <div class="mi-fact">
+            <div class="mi-fact-line"><span class="mi-fact-label">Pitched:</span> the <strong>xylophone</strong> has wooden bars that each play an exact note, and the <strong>timpani</strong> can be tuned to a chosen pitch.</div>
+        </div>
+        <div class="mi-fact">
+            <div class="mi-fact-line"><span class="mi-fact-label">Unpitched:</span> the <strong>snare drum</strong> and the <strong>cymbals</strong> make a sound with no definite note, so you cannot sing along to one exact pitch.</div>
+        </div>
+
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.7; margin: 12px 0 6px 0;">Watch and listen to how percussion instruments are played.</p>
+        <div class="mi-video">
+            <iframe src="https://www.youtube-nocookie.com/embed/LaXgEHBYT3c" title="Percussion instruments" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p style="margin: 4px 0 2px 0;"><a href="https://www.youtube.com/watch?v=LaXgEHBYT3c" target="_blank" rel="noopener" style="font-size: 16px; color: #6B4E9E; text-decoration: none; border: 1px solid #6B4E9E; border-radius: 6px; padding: 5px 12px; display: inline-block;">&#9654; Watch on YouTube (opens in a new tab)</a></p>
+        <p class="mi-video-credit">Video hosted on YouTube. It belongs to its creator and is shared here for learning.</p>
+    </div>
+
+    <!-- PART 3: major scales + video + widget -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; THE MAJOR SCALE</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.7; margin: 0 0 6px 0;">A <strong>major scale</strong> is a set of eight notes that climb in one fixed pattern of steps. The pattern is <strong>Whole, Whole, Half, Whole, Whole, Whole, Half</strong>. When you start on C and follow that pattern, you get C, D, E, F, G, A, B, C, which is the C major scale. Look back at the step strip at the top of the lesson to see it in order.</p>
+
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.7; margin: 12px 0 6px 0;">Watch and listen to how a major scale climbs step by step.</p>
+        <div class="mi-video">
+            <iframe src="https://www.youtube-nocookie.com/embed/v44NY4fyxHA" title="The major scale" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p style="margin: 4px 0 2px 0;"><a href="https://www.youtube.com/watch?v=v44NY4fyxHA" target="_blank" rel="noopener" style="font-size: 16px; color: #6B4E9E; text-decoration: none; border: 1px solid #6B4E9E; border-radius: 6px; padding: 5px 12px; display: inline-block;">&#9654; Watch on YouTube (opens in a new tab)</a></p>
+        <p class="mi-video-credit">Video hosted on YouTube. It belongs to its creator and is shared here for learning.</p>
+
+        <div class="optima-widget ow-select">
+            <div class="widget-kicker">&#9889; TRY IT &middot; PERCUSSION AND SCALES CHECK</div>
+            <div class="widget-question">Pick the best answer for each one.</div>
+
+            <div class="widget-row" data-correct="0" data-fb="Right. Percussion instruments make sound when you strike or shake them." data-hint="Think about how you play a drum.">
+                <div class="widget-row-prompt">1. How does a percussion instrument make sound?</div>
+                <div class="widget-options">
+                    <button data-choice="0">By striking or shaking it</button>
+                    <button data-choice="1">By blowing across a hole</button>
+                    <button data-choice="2">By plucking a string</button>
+                    <button data-choice="3">By using a double reed</button>
+                </div>
+            </div>
+
+            <div class="widget-row" data-correct="1" data-fb="Yes. The xylophone is pitched because each bar plays an exact note." data-hint="Which one plays specific notes you can name?">
+                <div class="widget-row-prompt">2. Which instrument is pitched percussion?</div>
+                <div class="widget-options">
+                    <button data-choice="0">Snare drum</button>
+                    <button data-choice="1">Xylophone</button>
+                    <button data-choice="2">Cymbals</button>
+                    <button data-choice="3">Triangle</button>
+                </div>
+            </div>
+
+            <div class="widget-row" data-correct="3" data-fb="Correct. The snare drum is unpitched, so it has no definite note." data-hint="Which one makes a sound with no exact note?">
+                <div class="widget-row-prompt">3. Which instrument is unpitched percussion?</div>
+                <div class="widget-options">
+                    <button data-choice="0">Xylophone</button>
+                    <button data-choice="1">Timpani</button>
+                    <button data-choice="2">Marimba</button>
+                    <button data-choice="3">Snare drum</button>
+                </div>
+            </div>
+
+            <div class="widget-row" data-correct="2" data-fb="Yes. The major scale follows Whole, Whole, Half, Whole, Whole, Whole, Half." data-hint="Look back at the W W H W W W H step strip.">
+                <div class="widget-row-prompt">4. What is the step pattern of a major scale?</div>
+                <div class="widget-options">
+                    <button data-choice="0">Half, Half, Whole, Half, Half, Half, Whole</button>
+                    <button data-choice="1">Whole, Half, Whole, Half, Whole, Half, Whole</button>
+                    <button data-choice="2">Whole, Whole, Half, Whole, Whole, Whole, Half</button>
+                    <button data-choice="3">Whole, Whole, Whole, Whole, Whole, Whole, Whole</button>
+                </div>
+            </div>
+
+            <button class="widget-reset">Reset</button>
+        </div>
+
+        <!-- Need Help (green) -->
+        <div style="background: #E6F6EE; border-left: 5px solid #2E9E6B; border-top: 3px solid #57C98E; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 15px; color: #1B6B47; margin-bottom: 8px;">&#129303; NEED HELP?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Not sure if an instrument is pitched or unpitched? Ask yourself one question: can you sing one exact note along with it? If yes, it is pitched, like the xylophone. If it is just a knock or a crash, it is unpitched, like the snare drum. Still stuck? Message your teacher in your Canvas Inbox.</div>
+        </div>
+
+        <!-- Go Further (purple) -->
+        <details style="background: #FFFFFF; border: 1px solid #D6C8EE; border-left: 4px solid #6B4E9E; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 17px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #6B4E9E;">&#9654;</span>&nbsp; Go Further: try the pattern from a new note
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.7; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EFE8F8;">
+                The major-scale pattern works from any starting note, not just C. Try starting on G and singing up using Whole, Whole, Half, Whole, Whole, Whole, Half. You will need one sharp to keep the pattern. See if you can hear that the scale still sounds major.
+            </div>
+        </details>
+    </div>
+
+    <!-- PART 4: practice -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 14px;">&#127932; PART 4 &middot; SING THE SCALE</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.7; margin: 0 0 12px 0;">Sing the C major scale out loud, one note per beat, going up and then back down. Use the note names as you climb.</p>
+        <div style="background: #FFFFFF; border: 1px solid #D6C8EE; border-radius: 10px; padding: 18px; text-align: center; margin: 6px 0;">
+            <div style="display: inline-flex; gap: 16px; align-items: flex-end; flex-wrap: wrap; justify-content: center;">
+                <div style="text-align: center;"><div style="font-size: 28px; color: #2E9E6B;"><strong>C</strong></div></div>
+                <div style="text-align: center;"><div style="font-size: 28px; color: #6B4E9E;"><strong>D</strong></div></div>
+                <div style="text-align: center;"><div style="font-size: 28px; color: #2E9E6B;"><strong>E</strong></div></div>
+                <div style="text-align: center;"><div style="font-size: 28px; color: #6B4E9E;"><strong>F</strong></div></div>
+                <div style="text-align: center;"><div style="font-size: 28px; color: #2E9E6B;"><strong>G</strong></div></div>
+                <div style="text-align: center;"><div style="font-size: 28px; color: #6B4E9E;"><strong>A</strong></div></div>
+                <div style="text-align: center;"><div style="font-size: 28px; color: #2E9E6B;"><strong>B</strong></div></div>
+                <div style="text-align: center;"><div style="font-size: 28px; color: #6B4E9E;"><strong>C</strong></div></div>
+            </div>
+        </div>
+        <p style="font-size: 16px; color: #5A3E8C; line-height: 1.6; margin: 10px 0 0 0;">You will record the major scales you have learned for this week's assignment, so practice them a few times now.</p>
+    </div>
+
+    <!-- Music Journal tie-in -->
+    <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-radius: 6px; padding: 16px 22px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 10px;">&#128221; ADD A WEEKLY ENTRY TO YOUR MUSIC JOURNAL</div>
+        <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">Open your <strong>Music Journal organizer</strong> and add a new Weekly Entry. For <em>What I learned</em>, write one example of pitched percussion and one example of unpitched percussion. For <em>A new word</em>, write "pitched percussion" and what it means. You will reuse these notes in this week's assignment.</div>
+    </div>
+
+    <!-- What you'll do next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div><div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Module 33 Quick Check</strong></div><div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short quiz on pitched and unpitched percussion and the major scale. You get more than one try.</div></div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div><div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Module 33 Assignment: Percussion and Major Scales</strong></div><div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Post a percussion fact, then record yourself singing or playing the major scales. Your teacher will listen and give feedback.</div></div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 15px; color: #c7922c; margin-bottom: 12px;">&#128170; A LOOK BACK</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.7; margin: 0;">You met the percussion family, sorted instruments into pitched and unpitched, and reviewed the major-scale step pattern. Keep listening for percussion voices and major scales in the music around you.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; MUSIC INTERMEDIATE III &middot; Quarter 4 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Percussion &middot; Percussion and Major Scales</div>
+    <div style="font-size: 11px; color: rgba(255,255,255,0.45); line-height: 1.5;">This lesson links to third-party videos used for educational purposes. They remain the property of their creators. Please do not download or redistribute them.</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
